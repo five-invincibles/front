@@ -20,7 +20,7 @@ class CommonBoard extends GetView<CommonBoardController> {
         hoverColor: Colors.white,
         backgroundColor: const Color(0xFFFEBB6C),
         child: const Icon(Icons.edit),
-        onPressed: () {},
+        onPressed: () => Get.toNamed('/commonBoardEdit'),
       ),
       appBar: AppBar(
         centerTitle: true,
