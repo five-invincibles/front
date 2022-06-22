@@ -4,11 +4,13 @@ import 'package:front/Controller/cat_info_page_controller.dart';
 import 'package:front/Controller/choose_cat_controller.dart';
 import 'package:front/Controller/common_board_controller.dart';
 import 'package:front/Controller/init_page_controller.dart';
+import 'package:front/Controller/insert_cat_info_page_controller.dart';
 import 'package:front/Controller/insert_info_page_controller.dart';
 import 'package:front/Controller/kakao_login_controller.dart';
 import 'package:front/Controller/main_page_controller.dart';
 import 'package:front/Controller/upload_picture_page_controller.dart';
 import 'package:front/Controller/user_page_controller.dart';
+import 'package:front/Controller/insert_info_page_controller.dart';
 import 'package:front/View/camera_page.dart';
 import 'package:front/View/cat_info_page.dart';
 import 'package:front/View/choose_cat.dart';
@@ -19,6 +21,7 @@ import 'package:front/View/main_page.dart';
 import 'package:front/View/upload_picture_page.dart';
 import 'package:front/View/user_page.dart';
 import 'package:front/View/kakao_login.dart';
+import 'package:front/View/insert_cat_info_page.dart';
 import 'package:get/get.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -50,7 +53,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/catInfo', page: () => const CatInfoPage(), bindings: [
           BindingsBuilder.put(() => CatInfoPageController()),
         ]),
-        GetPage(name: '/chooseCat', page: () => const ChooseCat(), bindings: [
+        GetPage(name: '/chooseCat', page: () => ChooseCat(), bindings: [
           BindingsBuilder.put(() => ChooseCatController()),
         ]),
         GetPage(
@@ -76,6 +79,9 @@ class MyApp extends StatelessWidget {
             ]),
         GetPage(name: '/user', page: () => const UserPage(), bindings: [
           BindingsBuilder.put(() => UserPageController()),
+        ]),
+        GetPage(name: '/insertCat', page: () => InsertCatInfoPate(), bindings: [
+          BindingsBuilder.put(() => InsertCatInfoController()),
         ]),
       ],
     );

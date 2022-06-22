@@ -40,7 +40,8 @@ class CameraPage extends GetView<CameraPageController> {
         Get.off(ChooseCat(), arguments: {
           "date": dateData,
           "latitude": locationData.latitude,
-          "longitude": locationData.longitude
+          "longitude": locationData.longitude,
+          "image": file.path,
         });
       }),
     );

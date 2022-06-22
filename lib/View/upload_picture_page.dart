@@ -8,6 +8,8 @@ import 'package:exif/exif.dart';
 import 'choose_cat.dart';
 
 class UploadPicturePage extends GetView<UploadPicturePage> {
+  late Map<String, dynamic> data;
+
   UploadPicturePage({Key? key}) : super(key: key) {
     _getImage();
   }
@@ -15,8 +17,12 @@ class UploadPicturePage extends GetView<UploadPicturePage> {
   void _getImage() async {
     final ImagePicker _picker = ImagePicker();
     final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
-    final fileBytes = File(image!.path).readAsBytesSync();
-    final data = await readExifFromBytes(fileBytes);
+    try {
+      final fileBytes = File(image!.path).readAsBytesSync();
+      data = await readExifFromBytes(fileBytes);
+    } catch(e) {
+      Get.back();
+    }
 
     if (data.containsKey("GPS GPSLatitude") &&
         data.containsKey("GPS GPSLongitude")) {
@@ -28,6 +34,7 @@ class UploadPicturePage extends GetView<UploadPicturePage> {
         "date": dateData,
         "latitude": latitude,
         "longitude": longitude,
+        "image": image!.path,
       });
     } else {
       // 토스트 메세지
