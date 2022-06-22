@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
             bindings: [
               BindingsBuilder.put(() => CommonBoardController()),
             ]),
-        GetPage(name: '/insertInfo', page: () => const InsertInfo(), bindings: [
+        GetPage(name: '/insertInfo', page: () => InsertInfo(), bindings: [
           BindingsBuilder.put(() => InsertInfoPageController()),
         ]),
         GetPage(name: '/login', page: () => const KakaoLogin(), bindings: [
