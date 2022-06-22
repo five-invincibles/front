@@ -1,8 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
+import 'package:get/get.dart';
 
 class KakaoLoginButton extends StatelessWidget {
-  const KakaoLoginButton({Key? key}) : super(key: key);
+  KakaoLoginButton({Key? key}) : super(key: key) {
+    // 카카오 로그인 되어있으면 바로 페이지 이동
+    _loginCheck();
+  }
+
+  void _loginCheck() async {
+    if (await AuthApi.instance.hasToken()) {
+      AccessTokenInfo user = await UserApi.instance.accessTokenInfo();
+      print('사용자 정보 요청 성공'
+          '\n회원번호: ${user.id}');
+      Get.toNamed('/insertInfo');
+    }
+  }
 
   // 사용자 정보 처리 (DB 전송 등)
   void _get_user_info() async {
@@ -11,6 +24,7 @@ class KakaoLoginButton extends StatelessWidget {
       print('사용자 정보 요청 성공'
           '\n회원번호: ${user.id}'
           '\n닉네임: ${user.kakaoAccount?.profile?.nickname}');
+      Get.toNamed('/insertInfo');
     } catch (error) {
       print('사용자 정보 요청 실패 $error');
     }
@@ -50,8 +64,7 @@ class KakaoLoginButton extends StatelessWidget {
         }
       },
       child: Container(
-        child: Image.asset('assets/image/kakao_login_medium_narrow.png')
-      ),
+          child: Image.asset('assets/image/kakao_login_medium_narrow.png')),
     );
   }
 }

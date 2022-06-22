@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:front/Controller/choose_cat_controller.dart';
+import 'package:get/get.dart';
 
-class ChooseCat extends StatelessWidget {
+class ChooseCat extends GetView<ChooseCatController> {
   const ChooseCat({Key? key}) : super(key: key);
 
   @override

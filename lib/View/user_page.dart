@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:front/Controller/user_page_controller.dart';
+import 'package:get/get.dart';
 
-class UserPage extends StatelessWidget {
+class UserPage extends GetView<UserPageController> {
   const UserPage({Key? key}) : super(key: key);
 
   @override

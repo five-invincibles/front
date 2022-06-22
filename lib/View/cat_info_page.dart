@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:front/Controller/cat_info_page_controller.dart';
+import 'package:get/get.dart';
 
-class CatInfoPage extends StatelessWidget {
+class CatInfoPage extends GetView<CatInfoPageController> {
   const CatInfoPage({Key? key}) : super(key: key);
 
   @override
