@@ -65,7 +65,10 @@ class CatMapPage extends GetView<CatMapPageController> {
             Flexible(
               child: IconButton(
                 padding: EdgeInsets.zero,
-                icon: Icon(Icons.menu),
+                icon: const Icon(
+                  CupertinoIcons.bars,
+                  size: 30,
+                ),
                 onPressed: () {},
               ),
             ),
@@ -82,7 +85,10 @@ class CatMapPage extends GetView<CatMapPageController> {
             Flexible(
               child: IconButton(
                 padding: EdgeInsets.zero,
-                icon: Icon(Icons.search),
+                icon: const Icon(
+                  CupertinoIcons.search,
+                  size: 30,
+                ),
                 onPressed: () {},
               ),
             ),
