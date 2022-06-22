@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'choose_cat.dart';
-
 class UploadPicturePage extends GetView<UploadPicturePage> {
   const UploadPicturePage({Key? key}) : super(key: key);
 

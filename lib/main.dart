@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:front/Controller/camera_page_controller.dart';
 import 'package:front/Controller/cat_info_page_controller.dart';
+import 'package:front/Controller/cat_map_page_controller.dart';
 import 'package:front/Controller/choose_cat_controller.dart';
 import 'package:front/Controller/common_board_controller.dart';
 import 'package:front/Controller/init_page_controller.dart';
@@ -10,7 +11,8 @@ import 'package:front/Controller/main_page_controller.dart';
 import 'package:front/Controller/upload_picture_page_controller.dart';
 import 'package:front/Controller/user_page_controller.dart';
 import 'package:front/View/camera_page.dart';
-import 'package:front/View/catInfo_page.dart';
+import 'package:front/View/cat_info_page.dart';
+import 'package:front/View/cat_map_page.dart';
 import 'package:front/View/choose_cat.dart';
 import 'package:front/View/common_board.dart';
 import 'package:front/View/init_page.dart';
@@ -39,6 +41,9 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(name: '/', page: () => const InitPage(), bindings: [
           BindingsBuilder.put(() => InitPageController()),
+        ]),
+        GetPage(name: '/catMap', page: () => CatMapPage(), bindings: [
+          BindingsBuilder.put(() => CatMapPageController()),
         ]),
         GetPage(name: '/camera', page: () => const CameraPage(), bindings: [
           BindingsBuilder.put(() => CameraPageController()),
