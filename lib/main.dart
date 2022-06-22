@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import './View/KakaoLogin.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,6 +26,6 @@ class Cature extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
+    return KakaoLogin();
   }
 }

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import './InsertInfo.dart';
 
-class KakaoLogin extends StatelessWidget {
-  const KakaoLogin({Key? key}) : super(key: key);
+import './MainPage.dart';
+
+class InsertInfo extends StatelessWidget {
+  const InsertInfo({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,11 +13,15 @@ class KakaoLogin extends StatelessWidget {
           onTap: () {
             Navigator.pushAndRemoveUntil(
                 context,
-                MaterialPageRoute(builder: (context) => InsertInfo()),
+                MaterialPageRoute(builder: (context) => Main()),
                 (route) => false);
           },
           child: Container(
-            height: 200, width: 300, child: Text("카카오톡 로그인하기"), color: Colors.grey,),
+            height: 200,
+            width: 300,
+            child: Text("입력 완료 버튼"),
+            color: Colors.grey,
+          ),
         ),
       ),
     );
