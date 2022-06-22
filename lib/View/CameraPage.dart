@@ -12,8 +12,8 @@ class CameraPage extends StatelessWidget {
         child: GestureDetector(
           onTap: () {
             Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ChooseCat()));
+              context,
+              MaterialPageRoute(builder: (context) => ChooseCat()));
           },
           child: Container(
             child: Text("카메라 페이지"),

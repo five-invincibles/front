@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 import './View/KakaoLogin.dart';
 
-void main() {
+Future main() async {
+  await dotenv.load(fileName: ".env");
+  KakaoSdk.init(nativeAppKey: dotenv.env['KAKAO_LOGIN_KEY']);
   runApp(const MyApp());
 }
 
