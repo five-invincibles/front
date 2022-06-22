@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:front/Controller/common_board_controller.dart';
+import 'package:front/Model/common_board_tile.dart';
 import 'package:get/get.dart';
 
 class CommonBoard extends GetView<CommonBoardController> {
@@ -40,10 +41,115 @@ class CommonBoard extends GetView<CommonBoardController> {
             onPressed: () {},
           )
         ],
-        elevation: 3,
+        elevation: 2.5,
         backgroundColor: Color(0xFFFCFCFC),
       ),
-      body: Container(),
+      body: _buildBody(),
+    );
+  }
+
+  Widget _buildBody() {
+    return Obx(() => ListView.separated(
+          itemCount: controller.tiles.length,
+          itemBuilder: (context, index) =>
+              _buildTile(controller.tiles.elementAt(index)),
+          separatorBuilder: (context, index) => Container(
+            decoration: BoxDecoration(
+                border: Border(top: BorderSide(width: 1, color: Colors.grey))),
+          ),
+        ));
+  }
+
+  Widget _buildTile(CommonBoardTile item) {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 15),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 10),
+            child: CircleAvatar(
+              backgroundColor: const Color(0xFFFEBB6C),
+              radius: 28,
+              child: Icon(
+                Icons.person,
+                color: Colors.white,
+                size: 30,
+              ),
+            ),
+          ),
+          Expanded(
+              child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                item.userNick,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              ),
+              Text(
+                item.tileText,
+                style: TextStyle(height: 2, fontSize: 14),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 10),
+              ),
+              Row(
+                children: [
+                  GestureDetector(
+                    onTap: () {},
+                    child: Row(children: [
+                      Icon(
+                        Icons.chat_bubble_outline,
+                        size: 22,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 5),
+                      ),
+                      Text(item.commentCount.toString()),
+                    ]),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 5),
+                  ),
+                  GestureDetector(
+                    onTap: () {},
+                    child: Row(children: [
+                      Icon(
+                        Icons.thumb_up_off_alt,
+                        size: 22,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 5),
+                      ),
+                      Text(item.likeCount.toString()),
+                    ]),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 5),
+                  ),
+                  item.imageCount == 0
+                      ? Container()
+                      : GestureDetector(
+                          onTap: () {},
+                          child: Row(children: [
+                            Icon(
+                              Icons.image_outlined,
+                              size: 22,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(left: 5),
+                            ),
+                            Text(item.imageCount.toString()),
+                          ]),
+                        ),
+                ],
+              )
+            ],
+          )),
+        ],
+      ),
     );
   }
 }
