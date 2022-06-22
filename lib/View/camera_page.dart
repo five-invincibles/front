@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:front/Controller/camera_page_controller.dart';
+import 'package:get/get.dart';
 
-import 'ChooseCat.dart';
-
-class CameraPage extends StatelessWidget {
+class CameraPage extends GetView<CameraPageController> {
   const CameraPage({Key? key}) : super(key: key);
 
   @override
@@ -10,11 +10,7 @@ class CameraPage extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: GestureDetector(
-          onTap: () {
-            Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ChooseCat()));
-          },
+          onTap: () => Get.toNamed('/chooseCat'),
           child: Container(
             child: Text("카메라 페이지"),
             color: Colors.grey,

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:front/Controller/init_page_controller.dart';
+import 'package:front/View/main_page.dart';
+import 'package:get/get.dart';
 
-import './MainPage.dart';
-
-class InsertInfo extends StatelessWidget {
+class InsertInfo extends GetView<InitPageController> {
   const InsertInfo({Key? key}) : super(key: key);
 
   @override

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:front/Controller/common_board_controller.dart';
+import 'package:get/get.dart';
 
-class CommonBoard extends StatelessWidget {
+class CommonBoard extends GetView<CommonBoardController> {
   const CommonBoard({Key? key}) : super(key: key);
 
   @override
