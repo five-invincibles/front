@@ -10,10 +10,11 @@ class KakaoLoginButton extends StatelessWidget {
 
   void _loginCheck() async {
     if (await AuthApi.instance.hasToken()) {
-      AccessTokenInfo user = await UserApi.instance.accessTokenInfo();
-      print('사용자 정보 요청 성공'
-          '\n회원번호: ${user.id}');
-      Get.toNamed('/insertInfo');
+      await UserApi.instance.logout(); // 들어오자마자 자동 로그아웃 임시로 넣음
+      // AccessTokenInfo user = await UserApi.instance.accessTokenInfo();
+      // print('사용자 정보 요청 성공'
+      //     '\n회원번호: ${user.id}');
+      // Get.toNamed('/insertInfo');
     }
   }
 

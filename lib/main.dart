@@ -70,7 +70,7 @@ class MyApp extends StatelessWidget {
         ]),
         GetPage(
             name: '/uploadPicture',
-            page: () => const UploadPicturePage(),
+            page: () => UploadPicturePage(),
             bindings: [
               BindingsBuilder.put(() => UploadPicturePageController()),
             ]),
