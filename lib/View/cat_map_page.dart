@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:front/View/Widget/Map/pannel.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class CatMapPage extends GetView<CatMapPageController> {
   CatMapPage({super.key});
@@ -13,24 +14,36 @@ class CatMapPage extends GetView<CatMapPageController> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Obx(() => Stack(
-        children: [
-          _buildBody(),
-          _buildFloatingButton(),
-          Visibility(
-            visible: controller.isShowPannel.value,
-            child: SlidingUpPanel(
-              header: Container(height: 30, width: double.maxFinite, color: Color(0),),
-              minHeight: 267,
-              maxHeight: 603,
-              panel: PannelContent(catId: 1),
-            ),
-          ),
-        ],
-      )),
+            children: [
+              _buildBody(),
+              _buildFloatingButton(),
+              Visibility(
+                visible: controller.isShowPannel.value,
+                child: SlidingUpPanel(
+                  header: Container(
+                    height: 30,
+                    width: double.maxFinite,
+                    color: Color(0),
+                  ),
+                  minHeight: 267,
+                  maxHeight: 603,
+                  panel: PannelContent(catId: 1),
+                ),
+              ),
+            ],
+          )),
+    );
+  }
+
+  void showLoading() async {
+    await EasyLoading.show(
+      status: '지도 불러오는중 ...',
+      maskType: EasyLoadingMaskType.clear,
     );
   }
 
   Widget _buildBody() {
+    showLoading();
     return Obx(() => controller.isLoading.value
         ? Center(
             child: Text('Loading'),
@@ -44,6 +57,7 @@ class CatMapPage extends GetView<CatMapPageController> {
   }
 
   Widget _buildMap() {
+    EasyLoading.dismiss();
     return Obx(() => GoogleMap(
           zoomControlsEnabled: false,
           mapType: MapType.terrain,
@@ -117,21 +131,87 @@ class CatMapPage extends GetView<CatMapPageController> {
 
   Widget _buildFloatingButton() {
     return Container(
-      height: double.infinity,
-      width: double.infinity,
-      alignment: Alignment.bottomRight,
-      padding: EdgeInsets.only(bottom: 42, right: 23),
-      child: FloatingActionButton(
-        elevation: 0,
-        highlightElevation: 0,
-        focusElevation: 0,
-        hoverElevation: 0,
-        splashColor: Colors.white.withOpacity(0.1),
-        hoverColor: Colors.white,
-        backgroundColor: Color(0xFFFEBB6C),
-        child: const Icon(CupertinoIcons.plus),
-        onPressed: () {},
-      ),
-    );
+        height: double.infinity,
+        width: double.infinity,
+        alignment: Alignment.bottomRight,
+        padding: EdgeInsets.only(bottom: 42, right: 23),
+        child: Obx(
+          () => controller.isFloatingButtonClicked.value
+              ? Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    FloatingActionButton(
+                      heroTag: "camera",
+                      elevation: 0,
+                      highlightElevation: 0,
+                      focusElevation: 0,
+                      hoverElevation: 0,
+                      splashColor: Color(0x667080).withOpacity(0.1),
+                      hoverColor: Color(0x667080),
+                      backgroundColor: Color(0xFFFCFCFC),
+                      shape: StadiumBorder(
+                          side: BorderSide(color: Colors.grey, width: 1)),
+                      child: const Icon(Icons.photo_camera_outlined,
+                          color: Colors.grey),
+                      onPressed: () {
+                        Get.toNamed("/camera");
+                      },
+                    ),
+                    SizedBox(height: 6),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        FloatingActionButton(
+                          heroTag: "image",
+                          elevation: 0,
+                          highlightElevation: 0,
+                          focusElevation: 0,
+                          hoverElevation: 0,
+                          splashColor: Color(0x667080).withOpacity(0.1),
+                          hoverColor: Color(0x667080),
+                          backgroundColor: Color(0xFFFCFCFC),
+                          shape: StadiumBorder(
+                              side: BorderSide(color: Colors.grey, width: 1)),
+                          child: const Icon(Icons.image_outlined,
+                              color: Colors.grey),
+                          onPressed: () {
+                            Get.toNamed('uploadPicture');
+                          },
+                        ),
+                        SizedBox(width: 6),
+                        FloatingActionButton(
+                          heroTag: "close",
+                          elevation: 0,
+                          highlightElevation: 0,
+                          focusElevation: 0,
+                          hoverElevation: 0,
+                          splashColor: Colors.white.withOpacity(0.1),
+                          hoverColor: Colors.white,
+                          backgroundColor: Color(0xFFFEBB6C),
+                          child: const Icon(Icons.close),
+                          onPressed: () {
+                            controller.clickFloatingButton();
+                          },
+                        ),
+                      ],
+                    ),
+                  ],
+                )
+              : FloatingActionButton(
+                  heroTag: "open",
+                  elevation: 0,
+                  highlightElevation: 0,
+                  focusElevation: 0,
+                  hoverElevation: 0,
+                  splashColor: Colors.white.withOpacity(0.1),
+                  hoverColor: Colors.white,
+                  backgroundColor: Color(0xFFFEBB6C),
+                  child: const Icon(CupertinoIcons.plus),
+                  onPressed: () {
+                    controller.clickFloatingButton();
+                  },
+                ),
+        ));
   }
 }

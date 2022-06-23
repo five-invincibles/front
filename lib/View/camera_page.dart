@@ -39,8 +39,8 @@ class CameraPage extends GetView<CameraPageController> {
         Position locationData = await getCurrentLocation();
         Get.off(ChooseCat(), arguments: {
           "date": dateData,
-          "latitude": locationData.latitude,
-          "longitude": locationData.longitude,
+          "latitude": locationData.latitude.toString(),
+          "longitude": locationData.longitude.toString(),
           "image": file.path,
         });
       }),

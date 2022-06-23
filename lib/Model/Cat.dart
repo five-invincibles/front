@@ -4,8 +4,8 @@ class Cat {
   final String species;
   final String? age;
   final String? sex;
-  final double? longitude;
-  final double? latitude;
+  final String? longitude;
+  final String? latitude;
   
   Cat({
     required this.catId,

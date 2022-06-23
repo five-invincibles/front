@@ -184,6 +184,7 @@ class CatInfoUpdatePage extends GetView<CatInfoUpdateController> {
     }
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

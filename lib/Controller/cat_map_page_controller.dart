@@ -15,7 +15,9 @@ class CatMapPageController extends GetxController {
   Rx<LocationData>? currentLocation;
   RxBool isLoading = true.obs;
   RxBool isShowPannel = false.obs;
-  Rx<Cat>? catPannelInfo = Rx<Cat>(Cat(catId: 0, catName: "냥진이", species: "얼룩", age: "10살 이상", sex: "암컷(중성화)"));
+  RxBool isFloatingButtonClicked = false.obs;
+  Rx<Cat>? catPannelInfo = Rx<Cat>(Cat(
+      catId: 0, catName: "냥진이", species: "얼룩", age: "10살 이상", sex: "암컷(중성화)"));
 
   Future _getCurrentLocation() async {
     var location = Location();
@@ -31,6 +33,10 @@ class CatMapPageController extends GetxController {
 
   void showPanel() {
     isShowPannel.value = !isShowPannel.value;
+  }
+
+  void clickFloatingButton() {
+    isFloatingButtonClicked.value = !isFloatingButtonClicked.value;
   }
 
   @override

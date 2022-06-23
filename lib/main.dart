@@ -31,6 +31,8 @@ import 'package:front/View/cat_info_update_page.dart';
 import 'package:get/get.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:oktoast/oktoast.dart';
 
 Future main() async {
   await dotenv.load(fileName: ".env");
@@ -43,66 +45,69 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: 'Cature',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return OKToast(
+      child: GetMaterialApp(
+        title: 'Cature',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        initialRoute: '/login',
+        builder: EasyLoading.init(),
+        getPages: [
+          GetPage(name: '/', page: () => const InitPage(), bindings: [
+            BindingsBuilder.put(() => InitPageController()),
+          ]),
+          GetPage(name: '/catMap', page: () => CatMapPage(), bindings: [
+            BindingsBuilder.put(() => CatMapPageController()),
+          ]),
+          GetPage(name: '/camera', page: () => const CameraPage(), bindings: [
+            BindingsBuilder.put(() => CameraPageController()),
+          ]),
+          GetPage(name: '/catInfo', page: () => const CatInfoPage(), bindings: [
+            BindingsBuilder.put(() => CatInfoPageController()),
+          ]),
+          GetPage(name: '/chooseCat', page: () => ChooseCat(), bindings: [
+            BindingsBuilder.put(() => ChooseCatController()),
+          ]),
+          GetPage(
+              name: '/commonBoard',
+              page: () => const CommonBoard(),
+              bindings: [
+                BindingsBuilder.put(() => CommonBoardController()),
+              ]),
+          GetPage(
+              name: '/commonBoardEdit',
+              page: () => const CommonBoardEditPage(),
+              bindings: [
+                BindingsBuilder.put(() => CommonBoardEditPageController()),
+              ]),
+          GetPage(name: '/insertInfo', page: () => InsertInfo(), bindings: [
+    
+            BindingsBuilder.put(() => InsertInfoPageController()),
+          ]),
+          GetPage(name: '/login', page: () => const KakaoLogin(), bindings: [
+            BindingsBuilder.put(() => KakaoLoginController()),
+          ]),
+          GetPage(name: '/main', page: () => const Main(), bindings: [
+            BindingsBuilder.put(() => MainPageController()),
+          ]),
+          GetPage(
+              name: '/uploadPicture',
+              page: () => UploadPicturePage(),
+              bindings: [
+                BindingsBuilder.put(() => UploadPicturePageController()),
+              ]),
+          GetPage(name: '/user', page: () => const UserPage(), bindings: [
+            BindingsBuilder.put(() => UserPageController()),
+          ]),
+          GetPage(name: '/insertCat', page: () => InsertCatInfoPate(), bindings: [
+            BindingsBuilder.put(() => InsertCatInfoController()),
+          ]),
+          GetPage(name: '/updateCat', page: () => CatInfoUpdatePage(), bindings: [
+            BindingsBuilder.put(() => CatInfoUpdateController()),
+          ]),
+        ],
       ),
-      initialRoute: '/login',
-      getPages: [
-        GetPage(name: '/', page: () => const InitPage(), bindings: [
-          BindingsBuilder.put(() => InitPageController()),
-        ]),
-        GetPage(name: '/catMap', page: () => CatMapPage(), bindings: [
-          BindingsBuilder.put(() => CatMapPageController()),
-        ]),
-        GetPage(name: '/camera', page: () => const CameraPage(), bindings: [
-          BindingsBuilder.put(() => CameraPageController()),
-        ]),
-        GetPage(name: '/catInfo', page: () => const CatInfoPage(), bindings: [
-          BindingsBuilder.put(() => CatInfoPageController()),
-        ]),
-        GetPage(name: '/chooseCat', page: () => ChooseCat(), bindings: [
-          BindingsBuilder.put(() => ChooseCatController()),
-        ]),
-        GetPage(
-            name: '/commonBoard',
-            page: () => const CommonBoard(),
-            bindings: [
-              BindingsBuilder.put(() => CommonBoardController()),
-            ]),
-        GetPage(
-            name: '/commonBoardEdit',
-            page: () => const CommonBoardEditPage(),
-            bindings: [
-              BindingsBuilder.put(() => CommonBoardEditPageController()),
-            ]),
-        GetPage(name: '/insertInfo', page: () => InsertInfo(), bindings: [
-
-          BindingsBuilder.put(() => InsertInfoPageController()),
-        ]),
-        GetPage(name: '/login', page: () => const KakaoLogin(), bindings: [
-          BindingsBuilder.put(() => KakaoLoginController()),
-        ]),
-        GetPage(name: '/main', page: () => const Main(), bindings: [
-          BindingsBuilder.put(() => MainPageController()),
-        ]),
-        GetPage(
-            name: '/uploadPicture',
-            page: () => UploadPicturePage(),
-            bindings: [
-              BindingsBuilder.put(() => UploadPicturePageController()),
-            ]),
-        GetPage(name: '/user', page: () => const UserPage(), bindings: [
-          BindingsBuilder.put(() => UserPageController()),
-        ]),
-        GetPage(name: '/insertCat', page: () => InsertCatInfoPate(), bindings: [
-          BindingsBuilder.put(() => InsertCatInfoController()),
-        ]),
-        GetPage(name: '/updateCat', page: () => CatInfoUpdatePage(), bindings: [
-          BindingsBuilder.put(() => CatInfoUpdateController()),
-        ]),
-      ],
     );
   }
 }

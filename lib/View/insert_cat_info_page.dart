@@ -45,7 +45,7 @@ class InsertCatInfoPate extends GetView<InsertInfoPageController> {
         barrierDismissible: false,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: new Text("종 선택"),
+            title: Text("종 선택"),
             content: GridView.builder(
                 physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
@@ -63,7 +63,7 @@ class InsertCatInfoPate extends GetView<InsertInfoPageController> {
                 }),
             actions: <Widget>[
               new TextButton(
-                child: new Text("취소"),
+                child: Text("취소"),
                 onPressed: () {
                   Navigator.pop(context, InsertCatInfoController.to.species);
                 },
@@ -185,6 +185,7 @@ class InsertCatInfoPate extends GetView<InsertInfoPageController> {
     TextEditingController inputController = TextEditingController();
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
