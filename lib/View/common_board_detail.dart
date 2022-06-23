@@ -154,12 +154,13 @@ class CommonBoardDetailPage extends GetView<CommonBoardDetailPageController> {
               children: [
                 Text(
                   content.userNick,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 16, height: 2),
                 ),
                 Text(
                   content.contentText,
                   overflow: TextOverflow.fade,
-                  style: TextStyle(height: 2, fontSize: 14),
+                  style: TextStyle(height: 1.5, fontSize: 14),
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 10),

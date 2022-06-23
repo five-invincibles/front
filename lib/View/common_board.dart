@@ -38,7 +38,7 @@ class CommonBoard extends GetView<CommonBoardController> {
           IconButton(
             padding: EdgeInsets.zero,
             icon: const Icon(CupertinoIcons.person),
-            onPressed: () {},
+            onPressed: () => Get.toNamed('/user'),
           )
         ],
         elevation: 2.5,
