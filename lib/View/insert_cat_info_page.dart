@@ -61,7 +61,7 @@ class InsertCatInfoPate extends GetView<InsertInfoPageController> {
                       child: Marker(cat: _cats[index]));
                 }),
             actions: <Widget>[
-              new FlatButton(
+              TextButton(
                 child: new Text("취소"),
                 onPressed: () {
                   Navigator.pop(context);
@@ -99,7 +99,7 @@ class InsertCatInfoPate extends GetView<InsertInfoPageController> {
                       ));
                 }),
             actions: <Widget>[
-              new FlatButton(
+              TextButton(
                 child: new Text("취소"),
                 onPressed: () {
                   Navigator.pop(context);
@@ -137,7 +137,7 @@ class InsertCatInfoPate extends GetView<InsertInfoPageController> {
                       ));
                 }),
             actions: <Widget>[
-              new FlatButton(
+              TextButton(
                 child: new Text("취소"),
                 onPressed: () {
                   Navigator.pop(context);
@@ -156,11 +156,11 @@ class InsertCatInfoPate extends GetView<InsertInfoPageController> {
       String result = await showDialog(
         context: context,
         builder: (BuildContext context) {
-          return AlertDialog(  
+          return AlertDialog(
             title: Text("주의사항 선택"),
             content: ChooseAlert(),
             actions: <Widget>[
-              new FlatButton(
+              TextButton(
                 child: new Text("취소"),
                 onPressed: () {
                   Navigator.pop(context);

@@ -16,10 +16,11 @@ class UploadPicturePage extends GetView<UploadPicturePage> {
   void _getImage() async {
     final ImagePicker _picker = ImagePicker();
     final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    if (image == null) return;
     try {
       final fileBytes = File(image!.path).readAsBytesSync();
       data = await readExifFromBytes(fileBytes);
-    } catch(e) {
+    } catch (e) {
       Get.back();
     }
 

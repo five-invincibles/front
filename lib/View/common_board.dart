@@ -61,45 +61,45 @@ class CommonBoard extends GetView<CommonBoardController> {
   }
 
   Widget _buildTile(CommonBoardTile item) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 15),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 10),
-            child: CircleAvatar(
-              backgroundColor: const Color(0xFFFEBB6C),
-              radius: 28,
-              child: Icon(
-                Icons.person,
-                color: Colors.white,
-                size: 30,
+    return GestureDetector(
+      onTap: () => Get.toNamed('/commonBoardDetail'),
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 15),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 10),
+              child: CircleAvatar(
+                backgroundColor: const Color(0xFFFEBB6C),
+                radius: 28,
+                child: Icon(
+                  Icons.person,
+                  color: Colors.white,
+                  size: 30,
+                ),
               ),
             ),
-          ),
-          Expanded(
-              child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text(
-                item.userNick,
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-              ),
-              Text(
-                item.tileText,
-                style: TextStyle(height: 2, fontSize: 14),
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 10),
-              ),
-              Row(
-                children: [
-                  GestureDetector(
-                    onTap: () {},
-                    child: Row(children: [
+            Expanded(
+                child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  item.userNick,
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                ),
+                Text(
+                  item.tileText,
+                  style: TextStyle(height: 2, fontSize: 14),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 10),
+                ),
+                Row(
+                  children: [
+                    Row(children: [
                       Icon(
                         Icons.chat_bubble_outline,
                         size: 22,
@@ -109,13 +109,10 @@ class CommonBoard extends GetView<CommonBoardController> {
                       ),
                       Text(item.commentCount.toString()),
                     ]),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 5),
-                  ),
-                  GestureDetector(
-                    onTap: () {},
-                    child: Row(children: [
+                    Padding(
+                      padding: EdgeInsets.only(left: 5),
+                    ),
+                    Row(children: [
                       Icon(
                         Icons.thumb_up_off_alt,
                         size: 22,
@@ -125,15 +122,12 @@ class CommonBoard extends GetView<CommonBoardController> {
                       ),
                       Text(item.likeCount.toString()),
                     ]),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 5),
-                  ),
-                  item.imageCount == 0
-                      ? Container()
-                      : GestureDetector(
-                          onTap: () {},
-                          child: Row(children: [
+                    Padding(
+                      padding: EdgeInsets.only(left: 5),
+                    ),
+                    item.imageCount == 0
+                        ? Container()
+                        : Row(children: [
                             Icon(
                               Icons.image_outlined,
                               size: 22,
@@ -143,12 +137,12 @@ class CommonBoard extends GetView<CommonBoardController> {
                             ),
                             Text(item.imageCount.toString()),
                           ]),
-                        ),
-                ],
-              )
-            ],
-          )),
-        ],
+                  ],
+                )
+              ],
+            )),
+          ],
+        ),
       ),
     );
   }

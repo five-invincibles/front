@@ -4,6 +4,7 @@ import 'package:front/Controller/cat_info_page_controller.dart';
 import 'package:front/Controller/cat_map_page_controller.dart';
 import 'package:front/Controller/choose_cat_controller.dart';
 import 'package:front/Controller/common_board_controller.dart';
+import 'package:front/Controller/common_board_detail_controller.dart';
 import 'package:front/Controller/common_board_edit_controller.dart';
 import 'package:front/Controller/init_page_controller.dart';
 import 'package:front/Controller/insert_cat_info_page_controller.dart';
@@ -18,6 +19,7 @@ import 'package:front/View/cat_info_page.dart';
 import 'package:front/View/cat_map_page.dart';
 import 'package:front/View/choose_cat.dart';
 import 'package:front/View/common_board.dart';
+import 'package:front/View/common_board_detail.dart';
 import 'package:front/View/common_board_edit.dart';
 import 'package:front/View/init_page.dart';
 import 'package:front/View/insert_info_page.dart';
@@ -75,8 +77,13 @@ class MyApp extends StatelessWidget {
             bindings: [
               BindingsBuilder.put(() => CommonBoardEditPageController()),
             ]),
+        GetPage(
+            name: '/commonBoardDetail',
+            page: () => const CommonBoardDetailPage(),
+            bindings: [
+              BindingsBuilder.put(() => CommonBoardDetailPageController()),
+            ]),
         GetPage(name: '/insertInfo', page: () => InsertInfo(), bindings: [
-
           BindingsBuilder.put(() => InsertInfoPageController()),
         ]),
         GetPage(name: '/login', page: () => const KakaoLogin(), bindings: [
