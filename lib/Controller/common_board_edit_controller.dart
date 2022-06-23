@@ -25,4 +25,10 @@ class CommonBoardEditPageController extends GetxController {
       photos.add(File(xfile.path));
     });
   }
+
+  @override
+  void onClose() {
+    super.onClose();
+    editTextController.dispose();
+  }
 }

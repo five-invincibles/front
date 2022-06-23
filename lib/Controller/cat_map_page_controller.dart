@@ -29,4 +29,10 @@ class CatMapPageController extends GetxController {
     await _getCurrentLocation();
     isLoading(false);
   }
+
+  @override
+  Future<void> onClose() async {
+    (await mapController.future).dispose();
+    searchTextController.dispose();
+  }
 }
