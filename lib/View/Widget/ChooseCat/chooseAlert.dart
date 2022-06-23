@@ -11,6 +11,8 @@ class ChooseAlert extends StatefulWidget {
 }
 
 class _ChooseAlertState extends State<ChooseAlert> {
+  late List<String> _list;
+
   final List<String> _alert = [
     "비만",
     "링웜",
@@ -23,9 +25,12 @@ class _ChooseAlertState extends State<ChooseAlert> {
   ];
 
   @override
-  Widget build(BuildContext context) {
-    List<String> _list = [...InsertCatInfoController.to.alert];
+  void initState() {
+    _list = [...InsertCatInfoController.to.alert];
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return ListView.builder(
         shrinkWrap: true,
         itemCount: _alert.length,
@@ -35,25 +40,25 @@ class _ChooseAlertState extends State<ChooseAlert> {
               GestureDetector(
                 onTap: () {
                   if (_list.contains(_alert[index])) {
-                    print("취소");
                     setState(() {
                       _list.remove(_alert[index]);
                     });
-                    
+                    InsertCatInfoController.to.setTmpAlert(_list);
                   } else {
-                    print("선택");
                     setState(() {
                       _list.add(_alert[index]);
                     });
+                    InsertCatInfoController.to.setTmpAlert(_list);
                   }
                 },
                 child: Container(
-                      padding: EdgeInsets.only(top: 5, bottom: 5),
-                      color: _list.contains(_alert[index])
-                          ? Color(0xffF0F0F0)
-                          : Color(0xffFFFFFF),
-                      child: Text(_alert[index]),
-                    ),
+                  width: double.infinity,
+                  padding: EdgeInsets.only(top: 5, bottom: 5),
+                  color: _list.contains(_alert[index])
+                      ? Color(0xffF0F0F0)
+                      : Color(0xffFFFFFF),
+                  child: Text(_alert[index]),
+                ),
               ),
               Divider(),
             ],

@@ -55,6 +55,7 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         manifestPlaceholders["KakaoLoginKey"] = KakaoLoginKey
+        manifestPlaceholders["GoogleAPIKey"] = GoogleAPIKey
     }
 
     buildTypes {
