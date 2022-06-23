@@ -39,74 +39,77 @@ class InsertInfo extends GetView<InitPageController> {
 
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      body: Column(
+      body: Stack(
         children: [
-          SizedBox(height: 123),
+          Container(
+            width: double.infinity,
+            height: double.infinity,
+            child: Image.asset("assets/image/insert_info_screen.png", fit: BoxFit.cover),
+          ),
           Column(
             children: [
-              Text("Cature", style: _logoTextStyle),
-              Text("우리 주변의 작은 아이를 포착하다.", style: _subTextStyle)
+              SizedBox(height: 193),
+              Expanded(
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "대학교 명",
+                        style: _textStyle,
+                      ),
+                      Container(
+                        width: screenwidth * 0.9,
+                        color: Color(0xffF0F0F0),
+                        child: SearchField(
+                            searchStyle: _textFieldStyle,
+                            suggestionState: Suggestion.expand,
+                            suggestionAction: SuggestionAction.next,
+                            suggestions: _suggestions
+                                .map((e) => SearchFieldListItem(e))
+                                .toList(),
+                            textInputAction: TextInputAction.next,
+                            controller: _searchController,
+                            hint: '학교 선택',
+                            maxSuggestionsInViewPort: 8,
+                            itemHeight: 50,
+                            onSuggestionTap: (x) {},                
+                            searchInputDecoration: InputDecoration(
+                                focusedBorder: InputBorder.none,
+                                enabledBorder: InputBorder.none,
+                                hintStyle: _textFieldStyle,
+                                )),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => Main()),
+                      (route) => false);
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  width: 106,
+                  height: 48,
+                  decoration: BoxDecoration(
+                    color: Color(0xffFEBB6C),
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  child: Text(
+                    "접속하기",
+                    style: _buttonTextStyle,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 126,
+              )
             ],
           ),
-          Expanded(
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "대학교 명",
-                    style: _textStyle,
-                  ),
-                  Container(
-                    width: screenwidth * 0.9,
-                    color: Color(0xffF0F0F0),
-                    child: SearchField(
-                        searchStyle: _textFieldStyle,
-                        suggestionState: Suggestion.expand,
-                        suggestionAction: SuggestionAction.next,
-                        suggestions: _suggestions
-                            .map((e) => SearchFieldListItem(e))
-                            .toList(),
-                        textInputAction: TextInputAction.next,
-                        controller: _searchController,
-                        hint: '학교 선택',
-                        maxSuggestionsInViewPort: 8,
-                        itemHeight: 50,
-                        onSuggestionTap: (x) {},                
-                        searchInputDecoration: InputDecoration(
-                            focusedBorder: InputBorder.none,
-                            enabledBorder: InputBorder.none,
-                            hintStyle: _textFieldStyle,
-                            )),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => Main()),
-                  (route) => false);
-            },
-            child: Container(
-              alignment: Alignment.center,
-              width: 106,
-              height: 48,
-              decoration: BoxDecoration(
-                color: Color(0xffFEBB6C),
-                borderRadius: BorderRadius.circular(6),
-              ),
-              child: Text(
-                "접속하기",
-                style: _buttonTextStyle,
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 126,
-          )
         ],
       ),
     );

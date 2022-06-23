@@ -23,6 +23,7 @@ dependencies:
   camera_camera: ^2.0.2
   geolocator: ^8.2.1
   location: ^4.4.0
+  sliding_up_panel: ^2.0.0+1
 
 dev_dependencies:
   flutter_test:
