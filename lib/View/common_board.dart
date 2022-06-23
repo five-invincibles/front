@@ -103,11 +103,17 @@ class CommonBoard extends GetView<CommonBoardController> {
                       Icon(
                         Icons.chat_bubble_outline,
                         size: 22,
+                        color: Color(0xFF96A1B2),
                       ),
                       Padding(
                         padding: EdgeInsets.only(left: 5),
                       ),
-                      Text(item.commentCount.toString()),
+                      Text(
+                        item.commentCount.toString(),
+                        style: TextStyle(
+                          color: Color(0xFF96A1B2),
+                        ),
+                      ),
                     ]),
                     Padding(
                       padding: EdgeInsets.only(left: 5),
@@ -116,11 +122,17 @@ class CommonBoard extends GetView<CommonBoardController> {
                       Icon(
                         Icons.thumb_up_off_alt,
                         size: 22,
+                        color: Color(0xFF96A1B2),
                       ),
                       Padding(
                         padding: EdgeInsets.only(left: 5),
                       ),
-                      Text(item.likeCount.toString()),
+                      Text(
+                        item.likeCount.toString(),
+                        style: TextStyle(
+                          color: Color(0xFF96A1B2),
+                        ),
+                      ),
                     ]),
                     Padding(
                       padding: EdgeInsets.only(left: 5),
@@ -131,11 +143,17 @@ class CommonBoard extends GetView<CommonBoardController> {
                             Icon(
                               Icons.image_outlined,
                               size: 22,
+                              color: Color(0xFF96A1B2),
                             ),
                             Padding(
                               padding: EdgeInsets.only(left: 5),
                             ),
-                            Text(item.imageCount.toString()),
+                            Text(
+                              item.imageCount.toString(),
+                              style: TextStyle(
+                                color: Color(0xFF96A1B2),
+                              ),
+                            ),
                           ]),
                   ],
                 )
