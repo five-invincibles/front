@@ -134,6 +134,7 @@ class UserPage extends GetView<UserPageController> {
                 .map((e) => Marker(
                       cat: e,
                       width: 60,
+                      fontsize: 16,
                     ))
                 .toList(),
           ),
