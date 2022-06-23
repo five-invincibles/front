@@ -11,6 +11,8 @@ class ChooseAlert extends StatefulWidget {
 }
 
 class _ChooseAlertState extends State<ChooseAlert> {
+  late List<String> _list;
+
   final List<String> _alert = [
     "비만",
     "링웜",
@@ -23,41 +25,47 @@ class _ChooseAlertState extends State<ChooseAlert> {
   ];
 
   @override
-  Widget build(BuildContext context) {
-    List<String> _list = [...InsertCatInfoController.to.alert];
+  void initState() {
+    _list = [...InsertCatInfoController.to.alert];
+  }
 
-    return ListView.builder(
-        shrinkWrap: true,
-        itemCount: _alert.length,
-        itemBuilder: (BuildContext context, int index) {
-          return Column(
-            children: [
-              GestureDetector(
-                onTap: () {
-                  if (_list.contains(_alert[index])) {
-                    print("취소");
-                    setState(() {
-                      _list.remove(_alert[index]);
-                    });
-                    
-                  } else {
-                    print("선택");
-                    setState(() {
-                      _list.add(_alert[index]);
-                    });
-                  }
-                },
-                child: Container(
-                      padding: EdgeInsets.only(top: 5, bottom: 5),
-                      color: _list.contains(_alert[index])
-                          ? Color(0xffF0F0F0)
-                          : Color(0xffFFFFFF),
-                      child: Text(_alert[index]),
-                    ),
-              ),
-              Divider(),
-            ],
-          );
-        });
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 400, width: 300,
+      child: ListView.builder(
+          shrinkWrap: true,
+          itemCount: _alert.length,
+          itemBuilder: (BuildContext context, int index) {
+            return Column(
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    if (_list.contains(_alert[index])) {
+                      setState(() {
+                        _list.remove(_alert[index]);
+                      });
+                      InsertCatInfoController.to.setTmpAlert(_list);
+                    } else {
+                      setState(() {
+                        _list.add(_alert[index]);
+                      });
+                      InsertCatInfoController.to.setTmpAlert(_list);
+                    }
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    padding: EdgeInsets.only(top: 5, bottom: 5),
+                    color: _list.contains(_alert[index])
+                        ? Color(0xffF0F0F0)
+                        : Color(0xffFFFFFF),
+                    child: Text(_alert[index]),
+                  ),
+                ),
+                Divider(),
+              ],
+            );
+          }),
+    );
   }
 }

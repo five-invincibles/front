@@ -7,12 +7,13 @@ class InsertCatInfoController extends GetxController {
   RxString _age = RxString("미상");
   RxString _sex = RxString("미상");
   RxList<String> _alert = RxList();
+  List<String> _tmpAlert = [];
 
-  RxString? get species => _specise;
   String? get name => _name;
-  RxString? get age => _age;
-  RxString? get sex => _sex;
-  List<String> get alert => _alert.value;
+  String get species => _specise.value;
+  String get age => _age.value;
+  String get sex => _sex.value;
+  List<String> get alert => RxList.of(_alert);
 
   void setSpecies(String specise) {
     _specise.value = specise;
@@ -27,5 +28,13 @@ class InsertCatInfoController extends GetxController {
   void setSex(String sex) {
     _sex.value = sex;
     update();
+  }
+
+  void setTmpAlert(List<String> list) {
+    _tmpAlert = list;
+  }
+
+  void applyAlert() {
+    _alert.value = _tmpAlert;
   }
 }

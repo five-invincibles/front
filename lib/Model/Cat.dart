@@ -2,14 +2,21 @@ class Cat {
   final int catId;
   final String catName;
   final String species;
-  final int? age = null;
-  final String? sex = null;
+  final String? age;
+  final String? sex;
+  final String? longitude;
+  final String? latitude;
+  final String? imageUrl;
+
   Cat({
     required this.catId,
     required this.catName,
     required this.species,
-    int? age,
-    String? sex,
+    this.age,
+    this.sex,
+    this.longitude,
+    this.latitude,
+    this.imageUrl,
   });
 
   factory Cat.fromJson(Map<String, dynamic> json) {
@@ -19,6 +26,9 @@ class Cat {
       species: json['species'],
       age: json['age'],
       sex: json['sex'],
+      longitude: json['longitude'],
+      latitude: json['latitude'],
+      imageUrl: json['imageUrl'],
     );
   }
 }

@@ -28,7 +28,7 @@ class MarkerList extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: ChooseCatController.to.select == index
                           ? Colors.grey.withOpacity(0.2)
-                          : Color(0xffFCFCFC),
+                          : Color(0),
                       borderRadius: BorderRadius.circular(15)
                     ),
                       

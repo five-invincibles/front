@@ -5,9 +5,10 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:exif/exif.dart';
 import 'package:front/View/choose_cat.dart';
+import 'package:oktoast/oktoast.dart';
 
 class UploadPicturePage extends GetView<UploadPicturePage> {
-  late Map<String, dynamic> data;
+  Map<String, dynamic> data = {};
 
   UploadPicturePage({Key? key}) : super(key: key) {
     _getImage();
@@ -16,11 +17,12 @@ class UploadPicturePage extends GetView<UploadPicturePage> {
   void _getImage() async {
     final ImagePicker _picker = ImagePicker();
     final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    if (image == null) return;
     try {
       final fileBytes = File(image!.path).readAsBytesSync();
       data = await readExifFromBytes(fileBytes);
-    } catch(e) {
-      Get.back();
+    } catch (e) {
+      print(e);
     }
 
     if (data.containsKey("GPS GPSLatitude") &&
@@ -36,8 +38,13 @@ class UploadPicturePage extends GetView<UploadPicturePage> {
         "image": image!.path,
       });
     } else {
-      // 토스트 메세지
-      Get.toNamed("main");
+      if (data != {}) {
+        showToast("위치데이터가 없는 파일입니다", 
+        position: ToastPosition.bottom,
+        backgroundColor: Colors.grey.withOpacity(0.8),
+        );
+      }
+      Get.back();
     }
   }
 

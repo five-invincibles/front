@@ -42,29 +42,34 @@ class InsertCatInfoPate extends GetView<InsertInfoPageController> {
     void _showMarkerDialog() async {
       String result = await showDialog(
         context: context,
+        barrierDismissible: false,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: new Text("종 선택"),
-            content: GridView.builder(
-                physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: _cats.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  mainAxisExtent: 90,
-                ),
-                itemBuilder: (BuildContext context, int index) {
-                  return GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context, _cats[index].species);
-                      },
-                      child: Marker(cat: _cats[index]));
-                }),
+            title: Text("종 선택"),
+            content: Container(
+              height: 450,
+              width: 300,
+              child: GridView.builder(
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: _cats.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    mainAxisExtent: 90,
+                  ),
+                  itemBuilder: (BuildContext context, int index) {
+                    return GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context, _cats[index].species);
+                        },
+                        child: Marker(cat: _cats[index]));
+                  }),
+            ),
             actions: <Widget>[
-              new FlatButton(
+              TextButton(
                 child: new Text("취소"),
                 onPressed: () {
-                  Navigator.pop(context);
+                  Navigator.pop(context, InsertCatInfoController.to.species);
                 },
               ),
             ],
@@ -78,31 +83,35 @@ class InsertCatInfoPate extends GetView<InsertInfoPageController> {
     void _showAgeDialog() async {
       String result = await showDialog(
         context: context,
+        barrierDismissible: false,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: new Text("나이 선택"),
-            content: ListView.builder(
-                shrinkWrap: true,
-                itemCount: _ages.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Container(
-                      padding: EdgeInsets.only(top: 5, bottom: 5),
-                      child: Column(
-                        children: [
-                          GestureDetector(
-                              onTap: () {
-                                Navigator.pop(context, _ages[index]);
-                              },
-                              child: Text(_ages[index])),
-                          Divider(),
-                        ],
-                      ));
-                }),
+            title: Text("나이 선택"),
+            content: Container(
+              height: 200, width: 200,
+              child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: _ages.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Container(
+                        padding: EdgeInsets.only(top: 5, bottom: 5),
+                        child: Column(
+                          children: [
+                            GestureDetector(
+                                onTap: () {
+                                  Navigator.pop(context, _ages[index]);
+                                },
+                                child: Text(_ages[index])),
+                            Divider(),
+                          ],
+                        ));
+                  }),
+            ),
             actions: <Widget>[
-              new FlatButton(
+              TextButton(
                 child: new Text("취소"),
                 onPressed: () {
-                  Navigator.pop(context);
+                  Navigator.pop(context, InsertCatInfoController.to.age);
                 },
               ),
             ],
@@ -116,31 +125,35 @@ class InsertCatInfoPate extends GetView<InsertInfoPageController> {
     void _showSexDialog() async {
       String result = await showDialog(
         context: context,
+        barrierDismissible: false,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: new Text("성별 선택"),
-            content: ListView.builder(
-                shrinkWrap: true,
-                itemCount: _sex.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Container(
-                      padding: EdgeInsets.only(top: 5, bottom: 5),
-                      child: Column(
-                        children: [
-                          GestureDetector(
-                              onTap: () {
-                                Navigator.pop(context, _sex[index]);
-                              },
-                              child: Text(_sex[index])),
-                          Divider(),
-                        ],
-                      ));
-                }),
+            title: Text("성별 선택"),
+            content: Container(
+              height: 200, width: 200,
+              child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: _sex.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Container(
+                        padding: EdgeInsets.only(top: 5, bottom: 5),
+                        child: Column(
+                          children: [
+                            GestureDetector(
+                                onTap: () {
+                                  Navigator.pop(context, _sex[index]);
+                                },
+                                child: Text(_sex[index])),
+                            Divider(),
+                          ],
+                        ));
+                  }),
+            ),
             actions: <Widget>[
-              new FlatButton(
+              TextButton(
                 child: new Text("취소"),
                 onPressed: () {
-                  Navigator.pop(context);
+                  Navigator.pop(context, InsertCatInfoController.to.sex);
                 },
               ),
             ],
@@ -152,15 +165,22 @@ class InsertCatInfoPate extends GetView<InsertInfoPageController> {
 
     // 주의사항 선택
     void _showAlert() async {
-      List<String> _list = InsertCatInfoController.to.alert;
-      String result = await showDialog(
+      await showDialog(
         context: context,
+        barrierDismissible: false,
         builder: (BuildContext context) {
-          return AlertDialog(  
+          return AlertDialog(
             title: Text("주의사항 선택"),
             content: ChooseAlert(),
             actions: <Widget>[
-              new FlatButton(
+              TextButton(
+                child: new Text("확인"),
+                onPressed: () {
+                  InsertCatInfoController.to.applyAlert();
+                  Navigator.pop(context);
+                },
+              ),
+              TextButton(
                 child: new Text("취소"),
                 onPressed: () {
                   Navigator.pop(context);
@@ -170,12 +190,12 @@ class InsertCatInfoPate extends GetView<InsertInfoPageController> {
           );
         },
       );
-      InsertCatInfoController.to.setSex(result);
     }
 
     TextEditingController inputController = TextEditingController();
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -204,10 +224,14 @@ class InsertCatInfoPate extends GetView<InsertInfoPageController> {
                                     color: Colors.grey),
                               );
                             } else {
-                              return ClipRRect(
-                                  borderRadius: BorderRadius.circular(15),
-                                  child: Image.file(File(snapshot.data),
-                                      fit: BoxFit.cover));
+                              return Container(
+                                width: 200,
+                                height: 200,
+                                child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(15),
+                                    child: Image.file(File(snapshot.data),
+                                        fit: BoxFit.cover)),
+                              );
                             }
                           },
                         )),
@@ -237,7 +261,7 @@ class InsertCatInfoPate extends GetView<InsertInfoPageController> {
                   GestureDetector(
                     onTap: _showMarkerDialog,
                     child: Obx(() => Text(
-                          InsertCatInfoController.to.species!.value,
+                          InsertCatInfoController.to.species,
                           style: _selectTextStyle,
                         )),
                   )
@@ -256,7 +280,7 @@ class InsertCatInfoPate extends GetView<InsertInfoPageController> {
                       _showAgeDialog();
                     },
                     child: Obx(() => Text(
-                          InsertCatInfoController.to.age!.value,
+                          InsertCatInfoController.to.age,
                           style: _selectTextStyle,
                         )),
                   )
@@ -276,7 +300,7 @@ class InsertCatInfoPate extends GetView<InsertInfoPageController> {
                       },
                       child: Obx(
                         () => Text(
-                          InsertCatInfoController.to.sex!.value,
+                          InsertCatInfoController.to.sex,
                           style: _selectTextStyle,
                         ),
                       ))
@@ -294,11 +318,13 @@ class InsertCatInfoPate extends GetView<InsertInfoPageController> {
                     onTap: () {
                       _showAlert();
                     },
-                    child: Text(
-                      "선택",
+                    child: Obx(() =>Text(
+                      InsertCatInfoController.to.alert.length == 0 ?
+                        "선택" :
+                        "${InsertCatInfoController.to.alert[0]} 등 ${InsertCatInfoController.to.alert.length} 개",
                       style: _selectTextStyle,
                     ),
-                  )
+                  ))
                 ]),
           ),
         ],
