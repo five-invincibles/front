@@ -40,6 +40,7 @@ class CatMapPage extends GetView<CatMapPageController> {
       status: '지도 불러오는중 ...',
       maskType: EasyLoadingMaskType.clear,
     );
+    controller.setMarkerBitmap();
   }
 
   Widget _buildBody() {
@@ -58,7 +59,12 @@ class CatMapPage extends GetView<CatMapPageController> {
 
   Widget _buildMap() {
     EasyLoading.dismiss();
+    print("latitude ${controller.currentLocation!.value.latitude!}");
+    print("longitude ${controller.currentLocation!.value.longitude!}");
     return Obx(() => GoogleMap(
+          onTap: (LatLng position) {
+            controller.hidePanel();
+          },
           zoomControlsEnabled: false,
           mapType: MapType.terrain,
           initialCameraPosition: CameraPosition(
@@ -69,13 +75,17 @@ class CatMapPage extends GetView<CatMapPageController> {
             this.controller.mapController.complete(controller);
           },
           markers: {
-            Marker(
-                markerId: const MarkerId('current'),
+            ...controller.cats.map((cat) {
+              return Marker(
+                markerId: MarkerId(cat.catId.toString()),
                 onTap: () {
                   controller.showPanel();
                 },
-                position: LatLng(controller.currentLocation!.value.latitude!,
-                    controller.currentLocation!.value.longitude!)),
+                position: LatLng(double.parse(cat.latitude!), double.parse(cat.longitude!)),
+                icon: controller.markerIcon.value[cat.species] ??
+                  BitmapDescriptor.defaultMarker,
+              );
+            }).toList()
           },
         ));
   }

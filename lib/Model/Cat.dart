@@ -6,7 +6,8 @@ class Cat {
   final String? sex;
   final String? longitude;
   final String? latitude;
-  
+  final String? imageUrl;
+
   Cat({
     required this.catId,
     required this.catName,
@@ -15,6 +16,7 @@ class Cat {
     this.sex,
     this.longitude,
     this.latitude,
+    this.imageUrl,
   });
 
   factory Cat.fromJson(Map<String, dynamic> json) {
@@ -26,6 +28,7 @@ class Cat {
       sex: json['sex'],
       longitude: json['longitude'],
       latitude: json['latitude'],
+      imageUrl: json['imageUrl'],
     );
   }
 }

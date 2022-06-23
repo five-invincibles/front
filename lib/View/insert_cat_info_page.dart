@@ -214,10 +214,14 @@ class InsertCatInfoPate extends GetView<InsertInfoPageController> {
                                     color: Colors.grey),
                               );
                             } else {
-                              return ClipRRect(
-                                  borderRadius: BorderRadius.circular(15),
-                                  child: Image.file(File(snapshot.data),
-                                      fit: BoxFit.cover));
+                              return Container(
+                                width: 200,
+                                height: 200,
+                                child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(15),
+                                    child: Image.file(File(snapshot.data),
+                                        fit: BoxFit.cover)),
+                              );
                             }
                           },
                         )),

@@ -46,9 +46,15 @@ class PannelContent extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
-                              alignment: Alignment.topRight,
-                              child: Icon(Icons.favorite)),
+                          // 좋아요 버튼
+                          GestureDetector(
+                            onTap: () {
+                              CatMapPageController.to.clickLikeButton();
+                            },
+                            child: Container(
+                                alignment: Alignment.topRight,
+                                child: CatMapPageController.to.like.value ? Icon(Icons.favorite, color: Color(0xffFEBB6C)) : Icon(Icons.favorite_outline, color: Color(0xffFEBB6C))),
+                          ),
                           Expanded(child: Container()),
                           Text(
                               CatMapPageController

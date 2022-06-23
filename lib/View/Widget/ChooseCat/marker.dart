@@ -9,19 +9,19 @@ class Marker extends StatelessWidget {
 
 
   Map<String, String> markerPath = {
-    "샴": "Group18.png",
-    "정장": "Group19.png",
-    "까망": "Group20.png",
-    "깻잎": "Group31.png",
-    "얼룩": "Group30.png",
-    "하양": "Group29.png",
-    "카오스": "Group26.png",
-    "삼색태비": "Group27.png",
-    "삼색": "Group28.png",
-    "고등어태비": "Group25.png",
-    "고등어": "Group23.png",
-    "치즈태비": "Group22.png",
-    "치즈": "Group21.png",
+    "샴": "sham.png",
+    "정장": "suit.png",
+    "까망": "black.png",
+    "깻잎": "leaf.png",
+    "얼룩": "cow.png",
+    "하양": "white.png",
+    "카오스": "chaos.png",
+    "삼색태비": "threetab.png",
+    "삼색": "three.png",
+    "고등어태비": "fishtab.png",
+    "고등어": "fish.png",
+    "치즈태비": "cheesetab.png",
+    "치즈": "cheese.png",
   };
 
   late Cat cat;
@@ -31,7 +31,7 @@ class Marker extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Image.asset("assets/marker/${markerPath[cat.species] ?? 'Group18.png'}"),
+        Image.asset("assets/marker/${markerPath[cat.species] ?? 'fish.png'}"),
         Text(cat.catName, style: _nameTextStyle,),
       ],
     );
