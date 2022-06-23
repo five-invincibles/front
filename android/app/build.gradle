@@ -22,6 +22,7 @@ if (flutterVersionName == null) {
 }
 
 def KakaoLoginKey = localProperties.getProperty('kakao.login.key')
+def GoogleAPIKey = localProperties.getProperty('google.map.key')
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
