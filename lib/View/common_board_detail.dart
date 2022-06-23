@@ -18,7 +18,7 @@ class CommonBoardDetailPage extends GetView<CommonBoardDetailPageController> {
         centerTitle: true,
         iconTheme: const IconThemeData(color: Color(0xFF667080), size: 30),
         title: const Text(
-          '고양이 계시판',
+          '고양이 게시판',
           style: TextStyle(color: Color(0xFF667080), fontSize: 20),
         ),
         actions: [
