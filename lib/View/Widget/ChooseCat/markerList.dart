@@ -20,7 +20,20 @@ class MarkerList extends StatelessWidget {
             crossAxisCount: 4,
           ),
           itemBuilder: (BuildContext context, int index) {
-            return Marker(cat: cats[index]);
+            return Obx(() => GestureDetector(
+                  onTap: () {
+                    ChooseCatController.to.selectCat(index);
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: ChooseCatController.to.select == index
+                          ? Colors.grey.withOpacity(0.2)
+                          : Color(0xffFCFCFC),
+                      borderRadius: BorderRadius.circular(15)
+                    ),
+                      
+                      child: Marker(cat: cats[index])),
+                ));
           }),
     );
   }

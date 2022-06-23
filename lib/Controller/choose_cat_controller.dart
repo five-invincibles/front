@@ -6,10 +6,12 @@ class ChooseCatController extends GetxController {
   static ChooseCatController get to => Get.find();
 
   Map<String, dynamic> arguments = {};
+  RxInt _select = RxInt(-1);
   String? get image => arguments["image"];
   String? get longitude => arguments["longitude"];
   String? get latitude => arguments["latitude"];
   String? get date => arguments["date"];
+  int? get select => _select.value;
   List<Cat> get cats => _cats;
 
   List<Cat> _cats = [
@@ -34,6 +36,10 @@ class ChooseCatController extends GetxController {
   void setData(Map<String, dynamic> data) {
     arguments = data;
     update();
+  }
+
+  void selectCat(int index) {
+    _select.value = index;
   }
 
   void getCats(List<Map<String, dynamic>> jsonData) {

@@ -12,7 +12,6 @@ class InsertCatInfoController extends GetxController {
   String? get name => _name;
   RxString? get age => _age;
   RxString? get sex => _sex;
-  List<String> get alert => _alert;
 
   void setSpecies(String specise) {
     _specise.value = specise;
