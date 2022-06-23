@@ -3,6 +3,7 @@ import 'package:front/Controller/init_page_controller.dart';
 import 'package:front/View/main_page.dart';
 import 'package:get/get.dart';
 import 'package:searchfield/searchfield.dart';
+import 'package:front/View/cat_map_page.dart';
 
 class InsertInfo extends GetView<InitPageController> {
   InsertInfo({Key? key}) : super(key: key);
@@ -21,7 +22,6 @@ class InsertInfo extends GetView<InitPageController> {
   final TextStyle _textFieldStyle = const TextStyle(
     fontSize: 20,
     color: Color(0xff667080),
-    
   );
 
   final _searchController = TextEditingController();
@@ -46,7 +46,8 @@ class InsertInfo extends GetView<InitPageController> {
           Container(
             width: double.infinity,
             height: double.infinity,
-            child: Image.asset("assets/image/insert_info_screen.png", fit: BoxFit.cover),
+            child: Image.asset("assets/image/insert_info_screen.png",
+                fit: BoxFit.cover),
           ),
           Column(
             children: [
@@ -78,12 +79,12 @@ class InsertInfo extends GetView<InitPageController> {
                             hint: '학교 선택',
                             maxSuggestionsInViewPort: 8,
                             itemHeight: 50,
-                            onSuggestionTap: (x) {},                
+                            onSuggestionTap: (x) {},
                             searchInputDecoration: InputDecoration(
-                                focusedBorder: InputBorder.none,
-                                enabledBorder: InputBorder.none,
-                                hintStyle: _textFieldStyle,
-                                )),
+                              focusedBorder: InputBorder.none,
+                              enabledBorder: InputBorder.none,
+                              hintStyle: _textFieldStyle,
+                            )),
                       ),
                     ],
                   ),
@@ -91,25 +92,22 @@ class InsertInfo extends GetView<InitPageController> {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(builder: (context) => Main()),
-                      (route) => false);
+                  Get.toNamed('/catMap');
                 },
                 child: Container(
                   alignment: Alignment.center,
                   width: 106,
                   height: 48,
                   decoration: BoxDecoration(
-                    color: Color(0xffFEBB6C),
-                    borderRadius: BorderRadius.circular(6),
-                    boxShadow: [BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: -5,
-                      blurRadius: 20,
-                      offset: Offset(0, 10)
-                    )]
-                  ),
+                      color: Color(0xffFEBB6C),
+                      borderRadius: BorderRadius.circular(6),
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: -5,
+                            blurRadius: 20,
+                            offset: Offset(0, 10))
+                      ]),
                   child: Text(
                     "접속하기",
                     style: _buttonTextStyle,

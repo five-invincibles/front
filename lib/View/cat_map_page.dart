@@ -47,7 +47,7 @@ class CatMapPage extends GetView<CatMapPageController> {
     showLoading();
     return Obx(() => controller.isLoading.value
         ? Center(
-            child: Text('Loading'),
+            child: Text(''),
           )
         : Stack(
             children: [
@@ -81,9 +81,10 @@ class CatMapPage extends GetView<CatMapPageController> {
                 onTap: () {
                   controller.showPanel();
                 },
-                position: LatLng(double.parse(cat.latitude!), double.parse(cat.longitude!)),
+                position: LatLng(
+                    double.parse(cat.latitude!), double.parse(cat.longitude!)),
                 icon: controller.markerIcon.value[cat.species] ??
-                  BitmapDescriptor.defaultMarker,
+                    BitmapDescriptor.defaultMarker,
               );
             }).toList()
           },
@@ -208,19 +209,39 @@ class CatMapPage extends GetView<CatMapPageController> {
                     ),
                   ],
                 )
-              : FloatingActionButton(
-                  heroTag: "open",
-                  elevation: 0,
-                  highlightElevation: 0,
-                  focusElevation: 0,
-                  hoverElevation: 0,
-                  splashColor: Colors.white.withOpacity(0.1),
-                  hoverColor: Colors.white,
-                  backgroundColor: Color(0xFFFEBB6C),
-                  child: const Icon(CupertinoIcons.plus),
-                  onPressed: () {
-                    controller.clickFloatingButton();
-                  },
+              : Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    FloatingActionButton(
+                      heroTag: "board",
+                      elevation: 0,
+                      highlightElevation: 0,
+                      focusElevation: 0,
+                      hoverElevation: 0,
+                      splashColor: Colors.white.withOpacity(0.1),
+                      hoverColor: Colors.white,
+                      backgroundColor: Color(0xFFFEBB6C),
+                      child: const Icon(Icons.article_outlined),
+                      onPressed: () {
+                        Get.toNamed('/commonBoard');
+                      },
+                    ),
+                    SizedBox(height: 16),
+                    FloatingActionButton(
+                      heroTag: "open",
+                      elevation: 0,
+                      highlightElevation: 0,
+                      focusElevation: 0,
+                      hoverElevation: 0,
+                      splashColor: Colors.white.withOpacity(0.1),
+                      hoverColor: Colors.white,
+                      backgroundColor: Color(0xFFFEBB6C),
+                      child: const Icon(CupertinoIcons.plus),
+                      onPressed: () {
+                        controller.clickFloatingButton();
+                      },
+                    ),
+                  ],
                 ),
         ));
   }

@@ -66,8 +66,8 @@ class InsertCatInfoPate extends GetView<InsertInfoPageController> {
                   }),
             ),
             actions: <Widget>[
-              new TextButton(
-                child: Text("취소"),
+              TextButton(
+                child: new Text("취소"),
                 onPressed: () {
                   Navigator.pop(context, InsertCatInfoController.to.species);
                 },
@@ -108,7 +108,7 @@ class InsertCatInfoPate extends GetView<InsertInfoPageController> {
                   }),
             ),
             actions: <Widget>[
-              new TextButton(
+              TextButton(
                 child: new Text("취소"),
                 onPressed: () {
                   Navigator.pop(context, InsertCatInfoController.to.age);
@@ -150,7 +150,7 @@ class InsertCatInfoPate extends GetView<InsertInfoPageController> {
                   }),
             ),
             actions: <Widget>[
-              new TextButton(
+              TextButton(
                 child: new Text("취소"),
                 onPressed: () {
                   Navigator.pop(context, InsertCatInfoController.to.sex);
@@ -173,14 +173,14 @@ class InsertCatInfoPate extends GetView<InsertInfoPageController> {
             title: Text("주의사항 선택"),
             content: ChooseAlert(),
             actions: <Widget>[
-              new TextButton(
+              TextButton(
                 child: new Text("확인"),
                 onPressed: () {
                   InsertCatInfoController.to.applyAlert();
                   Navigator.pop(context);
                 },
               ),
-              new TextButton(
+              TextButton(
                 child: new Text("취소"),
                 onPressed: () {
                   Navigator.pop(context);
