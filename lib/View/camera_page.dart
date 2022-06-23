@@ -29,18 +29,29 @@ class CameraPage extends GetView<CameraPageController> {
       return position;
     }
 
+    double convertToDegree(String str) {
+      String data = str.substring(1, str.length - 1);
+      List<String> tmp = data.split(",");
+      List<String> last = tmp[2].split('/');
+      int degree = int.parse(tmp[0]);
+      int minute = int.parse(tmp[1]);
+      double second = int.parse(last[0]) / int.parse(last[1]);
+      return degree + minute / 60 + second / 3600;
+    }
+
     return Scaffold(
       body: CameraCamera(onFile: (file) async {
         final fileBytes = file.readAsBytesSync();
         // 사진 정보
         final data = await readExifFromBytes(fileBytes);
         String dateData = data["Image DateTime"].toString();
+        print(dateData);
         // 위치 정보
         Position locationData = await getCurrentLocation();
         Get.off(ChooseCat(), arguments: {
           "date": dateData,
-          "latitude": locationData.latitude.toString(),
-          "longitude": locationData.longitude.toString(),
+          "latitude": double.parse(locationData.latitude.toString()),
+          "longitude": double.parse(locationData.longitude.toString()),
           "image": file.path,
         });
       }),

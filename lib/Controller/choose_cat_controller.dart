@@ -8,8 +8,8 @@ class ChooseCatController extends GetxController {
   Map<String, dynamic> arguments = {};
   RxInt _select = RxInt(-1);
   String? get image => arguments["image"];
-  String? get longitude => arguments["longitude"];
-  String? get latitude => arguments["latitude"];
+  double? get longitude => arguments["longitude"];
+  double? get latitude => arguments["latitude"];
   String? get date => arguments["date"];
   int? get select => _select.value;
   List<Cat> get cats => _cats;

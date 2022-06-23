@@ -6,6 +6,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:front/View/Widget/Map/pannel.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:front/View/cat_map_page.dart';
 
 class CatMapPage extends GetView<CatMapPageController> {
   CatMapPage({super.key});
@@ -47,7 +48,7 @@ class CatMapPage extends GetView<CatMapPageController> {
     showLoading();
     return Obx(() => controller.isLoading.value
         ? Center(
-            child: Text(''),
+            child: Text('Loading'),
           )
         : Stack(
             children: [
@@ -64,6 +65,9 @@ class CatMapPage extends GetView<CatMapPageController> {
     return Obx(() => GoogleMap(
           onTap: (LatLng position) {
             controller.hidePanel();
+          },
+          onCameraMove: (object) => {
+            controller.setCats(object.target.longitude, object.target.latitude)
           },
           zoomControlsEnabled: false,
           mapType: MapType.terrain,

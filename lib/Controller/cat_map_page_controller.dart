@@ -9,9 +9,12 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:front/Model/Cat.dart';
 import 'package:flutter/services.dart';
+import 'package:front/Connect/CatProvider.dart';
+import 'package:front/Model/lat_long.dart';
 
 class CatMapPageController extends GetxController {
   static CatMapPageController get to => Get.find();
+  final catProvider = Get.put(CatProvider());
 
   final Completer<GoogleMapController> mapController = Completer();
   final TextEditingController searchTextController = TextEditingController();
@@ -76,17 +79,24 @@ class CatMapPageController extends GetxController {
     });
   }
 
+  void setCats(double longitude, double latitude) async {
+    final result = await catProvider
+        .getNearBy(LatLong(longitude: longitude, latitude: latitude));
+    print(result.body);
+  }
+
   void initialPanel() {
     catPannelInfo!.value =
         Cat(catId: -1, catName: "이름", species: "고등어", age: "미상", sex: "미상");
   }
 
-  void setPanel(Cat cat) {
+  void setPanel(Cat cat) async {
     initialPanel();
     catPannelInfo!.value = cat;
   }
 
-  void showPanel() {
+  void showPanel() async {
+    initialPanel();
     isShowPannel.value = true;
   }
 

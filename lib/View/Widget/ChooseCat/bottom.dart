@@ -29,6 +29,7 @@ class Bottom extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
+              print(ChooseCatController.to.date);
               Get.toNamed('insertCat', arguments: {
                 "image": Get.find<ChooseCatController>().image,
                 "longitude": Get.find<ChooseCatController>().longitude,

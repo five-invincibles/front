@@ -28,6 +28,7 @@ dependencies:
   oktoast: ^3.2.0
   photo_view: ^0.14.0
   flutter_native_splash: ^2.2.3+1
+  http: ^0.13.4
 
 dev_dependencies:
   flutter_test:
