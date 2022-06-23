@@ -46,6 +46,13 @@ class Main extends GetView<MainPageController> {
               child: Text("공용 게시판"),
             ),
           ),
+          GestureDetector(
+            onTap: () => Get.toNamed('/catMap'),
+            child: Container(
+              color: Colors.grey,
+              child: Text("캣맵"),
+            ),
+          ),
         ],
       ),
     ));

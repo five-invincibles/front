@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:front/Controller/camera_page_controller.dart';
 import 'package:front/Controller/cat_info_page_controller.dart';
+import 'package:front/Controller/cat_map_page_controller.dart';
 import 'package:front/Controller/choose_cat_controller.dart';
 import 'package:front/Controller/common_board_controller.dart';
+import 'package:front/Controller/common_board_edit_controller.dart';
 import 'package:front/Controller/init_page_controller.dart';
 import 'package:front/Controller/insert_cat_info_page_controller.dart';
 import 'package:front/Controller/insert_info_page_controller.dart';
@@ -13,8 +15,10 @@ import 'package:front/Controller/user_page_controller.dart';
 import 'package:front/Controller/insert_info_page_controller.dart';
 import 'package:front/View/camera_page.dart';
 import 'package:front/View/cat_info_page.dart';
+import 'package:front/View/cat_map_page.dart';
 import 'package:front/View/choose_cat.dart';
 import 'package:front/View/common_board.dart';
+import 'package:front/View/common_board_edit.dart';
 import 'package:front/View/init_page.dart';
 import 'package:front/View/insert_info_page.dart';
 import 'package:front/View/main_page.dart';
@@ -47,6 +51,9 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/', page: () => const InitPage(), bindings: [
           BindingsBuilder.put(() => InitPageController()),
         ]),
+        GetPage(name: '/catMap', page: () => CatMapPage(), bindings: [
+          BindingsBuilder.put(() => CatMapPageController()),
+        ]),
         GetPage(name: '/camera', page: () => const CameraPage(), bindings: [
           BindingsBuilder.put(() => CameraPageController()),
         ]),
@@ -62,7 +69,14 @@ class MyApp extends StatelessWidget {
             bindings: [
               BindingsBuilder.put(() => CommonBoardController()),
             ]),
+        GetPage(
+            name: '/commonBoardEdit',
+            page: () => const CommonBoardEditPage(),
+            bindings: [
+              BindingsBuilder.put(() => CommonBoardEditPageController()),
+            ]),
         GetPage(name: '/insertInfo', page: () => InsertInfo(), bindings: [
+
           BindingsBuilder.put(() => InsertInfoPageController()),
         ]),
         GetPage(name: '/login', page: () => const KakaoLogin(), bindings: [
