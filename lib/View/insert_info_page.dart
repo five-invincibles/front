@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:front/Controller/init_page_controller.dart';
+import 'package:front/Controller/insert_info_page_controller.dart';
 import 'package:front/View/main_page.dart';
 import 'package:get/get.dart';
 import 'package:searchfield/searchfield.dart';
 import 'package:front/View/cat_map_page.dart';
 
-class InsertInfo extends GetView<InitPageController> {
+class InsertInfo extends GetView<InsertInfoPageController> {
   InsertInfo({Key? key}) : super(key: key);
 
   final TextStyle _logoTextStyle = const TextStyle(
@@ -23,17 +24,6 @@ class InsertInfo extends GetView<InitPageController> {
     fontSize: 20,
     color: Color(0xff667080),
   );
-
-  final _searchController = TextEditingController();
-  final List<String> _suggestions = [
-    '충북대학교',
-    '한림대학교',
-    '연세대학교',
-    '단국대학교',
-    '우송대학교',
-    '야옹대학교',
-    '와플대학교',
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -67,15 +57,15 @@ class InsertInfo extends GetView<InitPageController> {
                         padding: EdgeInsets.only(left: 15),
                         width: screenwidth * 0.9,
                         color: Color(0xffF0F0F0),
-                        child: SearchField(
+                        child: Obx(() => SearchField(
                             searchStyle: _textFieldStyle,
                             suggestionState: Suggestion.expand,
                             suggestionAction: SuggestionAction.next,
-                            suggestions: _suggestions
+                            suggestions: controller.universities
                                 .map((e) => SearchFieldListItem(e))
                                 .toList(),
                             textInputAction: TextInputAction.next,
-                            controller: _searchController,
+                            controller: controller.searchController,
                             hint: '학교 선택',
                             maxSuggestionsInViewPort: 8,
                             itemHeight: 50,
@@ -84,16 +74,14 @@ class InsertInfo extends GetView<InitPageController> {
                               focusedBorder: InputBorder.none,
                               enabledBorder: InputBorder.none,
                               hintStyle: _textFieldStyle,
-                            )),
+                            ))),
                       ),
                     ],
                   ),
                 ),
               ),
               GestureDetector(
-                onTap: () {
-                  Get.toNamed('/catMap');
-                },
+                onTap: () => controller.signUp(),
                 child: Container(
                   alignment: Alignment.center,
                   width: 106,
