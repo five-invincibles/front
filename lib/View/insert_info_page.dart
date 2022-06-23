@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:front/Controller/init_page_controller.dart';
+import 'package:front/Controller/insert_info_page_controller.dart';
 import 'package:front/View/main_page.dart';
 import 'package:get/get.dart';
 import 'package:searchfield/searchfield.dart';
@@ -25,20 +26,14 @@ class InsertInfo extends GetView<InitPageController> {
   );
 
   final _searchController = TextEditingController();
-  final List<String> _suggestions = [
-    '충북대학교',
-    '한림대학교',
-    '연세대학교',
-    '단국대학교',
-    '우송대학교',
-    '야옹대학교',
-    '와플대학교',
-  ];
+  
 
   @override
   Widget build(BuildContext context) {
+    InsertInfoPageController controller = Get.put(InsertInfoPageController());
+    final List<String> _suggestions = controller.university.value;
     double screenwidth = MediaQuery.of(context).size.width;
-
+    controller.getUniversity();
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Stack(
@@ -49,7 +44,7 @@ class InsertInfo extends GetView<InitPageController> {
             child: Image.asset("assets/image/insert_info_screen.png",
                 fit: BoxFit.cover),
           ),
-          Column(
+          Obx(() => Column(
             children: [
               SizedBox(height: 193),
               Expanded(
@@ -71,7 +66,7 @@ class InsertInfo extends GetView<InitPageController> {
                             searchStyle: _textFieldStyle,
                             suggestionState: Suggestion.expand,
                             suggestionAction: SuggestionAction.next,
-                            suggestions: _suggestions
+                            suggestions: controller.university.value
                                 .map((e) => SearchFieldListItem(e))
                                 .toList(),
                             textInputAction: TextInputAction.next,
@@ -119,7 +114,7 @@ class InsertInfo extends GetView<InitPageController> {
               )
             ],
           ),
-        ],
+      )],
       ),
     );
   }
