@@ -6,6 +6,8 @@ import 'package:front/Model/common_board_content.dart';
 import 'package:get/get.dart';
 import 'dart:math' as math;
 
+import 'package:photo_view/photo_view.dart';
+
 class CommonBoardDetailPage extends GetView<CommonBoardDetailPageController> {
   const CommonBoardDetailPage({super.key});
 
@@ -305,15 +307,23 @@ class CommonBoardDetailPage extends GetView<CommonBoardDetailPageController> {
   Widget _buildContentImage(String imgUrl) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 1),
-      clipBehavior: Clip.hardEdge,
       width: 230,
       height: 230,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: Image.network(
-        imgUrl,
-        fit: BoxFit.cover,
+      child: Material(
+        clipBehavior: Clip.hardEdge,
+        color: Colors.transparent,
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(15)),
+            side: BorderSide(color: Color(0xFFD9D9D9))),
+        child: InkWell(
+          onTap: () => Get.dialog(Dialog(
+            child: PhotoView(imageProvider: NetworkImage(imgUrl)),
+          )),
+          child: Image.network(
+            imgUrl,
+            fit: BoxFit.cover,
+          ),
+        ),
       ),
     );
   }

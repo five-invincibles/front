@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:front/Controller/common_board_edit_controller.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:photo_view/photo_view.dart';
 
 class CommonBoardEditPage extends GetView<CommonBoardEditPageController> {
   const CommonBoardEditPage({super.key});
@@ -113,7 +114,9 @@ class CommonBoardEditPage extends GetView<CommonBoardEditPageController> {
             borderRadius: BorderRadius.all(Radius.circular(15)),
             side: BorderSide(color: Color(0xFFD9D9D9))),
         child: InkWell(
-          onTap: () {},
+          onTap: () => Get.dialog(Dialog(
+            child: PhotoView(imageProvider: FileImage(elementAt)),
+          )),
           child: Image.file(
             elementAt,
             fit: BoxFit.cover,
