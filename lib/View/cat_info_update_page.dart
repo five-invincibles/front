@@ -1,44 +1,45 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:front/Controller/insert_cat_info_page_controller.dart';
-import 'package:front/Controller/insert_info_page_controller.dart';
-import 'package:front/View/Widget/AddCat/header.dart';
+import 'package:get/get.dart';
+import 'package:front/Controller/cat_info_update_page_controller.dart';
+import 'package:front/View/Widget/InsertCat/header.dart';
 import 'package:front/Model/Cat.dart';
 import 'package:front/View/Widget/ChooseCat/marker.dart';
-import 'package:front/View/Widget/ChooseCat/chooseAlert.dart';
-import 'package:get/get.dart';
+import 'package:front/Controller/cat_info_update_page_controller.dart';
+import 'package:front/View/Widget/AddCat/chooseAlert.dart';
 
-class InsertCatInfoPate extends GetView<InsertInfoPageController> {
-  InsertCatInfoPate({Key? key}) : super(key: key);
-  final TextStyle _nameTextStyle = const TextStyle(fontSize: 32);
-  final TextStyle _selectTextStyle =
-      const TextStyle(fontSize: 16, color: Color(0xff667080));
-
-  List<Cat> _cats = [
-    Cat(catId: 0, catName: "치즈", species: "치즈"),
-    Cat(catId: 1, catName: "치즈태비", species: "치즈태비"),
-    Cat(catId: 2, catName: "고등어", species: "고등어"),
-    Cat(catId: 3, catName: "고등어태비", species: "고등어태비"),
-    Cat(catId: 4, catName: "삼색", species: "삼색"),
-    Cat(catId: 5, catName: "삼색태비", species: "삼색태비"),
-    Cat(catId: 7, catName: "카오스", species: "카오스"),
-    Cat(catId: 8, catName: "하양", species: "하양"),
-    Cat(catId: 9, catName: "얼룩", species: "얼룩"),
-    Cat(catId: 10, catName: "깻잎", species: "깻잎"),
-    Cat(catId: 11, catName: "까망", species: "까망"),
-    Cat(catId: 12, catName: "정장", species: "정장"),
-    Cat(catId: 13, catName: "샴", species: "샴"),
-  ];
-
-  List<String> _ages = ["1살 미만", "1살 이상 ~ 10살 이하", "10살 이상", "미상"];
-
-  List<String> _sex = ["암컷", "수컷", "암컷(중성화)", "수컷(중성화)", "미상"];
+class CatInfoUpdatePage extends GetView<CatInfoUpdateController> {
+  CatInfoUpdatePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Get.put(InsertInfoPageController());
-    // 종 선택
+    Get.put(CatInfoUpdateController());
+
+    final TextStyle _nameTextStyle = const TextStyle(fontSize: 32);
+    final TextStyle _selectTextStyle =
+        const TextStyle(fontSize: 16, color: Color(0xff667080));
+
+    List<Cat> _cats = [
+      Cat(catId: 0, catName: "치즈", species: "치즈"),
+      Cat(catId: 1, catName: "치즈태비", species: "치즈태비"),
+      Cat(catId: 2, catName: "고등어", species: "고등어"),
+      Cat(catId: 3, catName: "고등어태비", species: "고등어태비"),
+      Cat(catId: 4, catName: "삼색", species: "삼색"),
+      Cat(catId: 5, catName: "삼색태비", species: "삼색태비"),
+      Cat(catId: 7, catName: "카오스", species: "카오스"),
+      Cat(catId: 8, catName: "하양", species: "하양"),
+      Cat(catId: 9, catName: "얼룩", species: "얼룩"),
+      Cat(catId: 10, catName: "깻잎", species: "깻잎"),
+      Cat(catId: 11, catName: "까망", species: "까망"),
+      Cat(catId: 12, catName: "정장", species: "정장"),
+      Cat(catId: 13, catName: "샴", species: "샴"),
+    ];
+    List<String> _ages = ["1살 미만", "1살 이상 ~ 10살 이하", "10살 이상", "미상"];
+    List<String> _sex = ["암컷", "수컷", "암컷(중성화)", "수컷(중성화)", "미상"];
+    TextEditingController inputController = TextEditingController();
+
+    // 마커 수정 선택
     void _showMarkerDialog() async {
       String result = await showDialog(
         context: context,
@@ -65,14 +66,14 @@ class InsertCatInfoPate extends GetView<InsertInfoPageController> {
               new TextButton(
                 child: new Text("취소"),
                 onPressed: () {
-                  Navigator.pop(context, InsertCatInfoController.to.species);
+                  Navigator.pop(context, CatInfoUpdateController.to.species);
                 },
               ),
             ],
           );
         },
       );
-      InsertCatInfoController.to.setSpecies(result);
+      CatInfoUpdateController.to.setSpecies(result);
     }
 
     // 나이 선택
@@ -104,14 +105,14 @@ class InsertCatInfoPate extends GetView<InsertInfoPageController> {
               new TextButton(
                 child: new Text("취소"),
                 onPressed: () {
-                  Navigator.pop(context, InsertCatInfoController.to.age);
+                  Navigator.pop(context, CatInfoUpdateController.to.age);
                 },
               ),
             ],
           );
         },
       );
-      InsertCatInfoController.to.setAge(result);
+      CatInfoUpdateController.to.setAge(result);
     }
 
     // 성별 선택
@@ -143,14 +144,14 @@ class InsertCatInfoPate extends GetView<InsertInfoPageController> {
               new TextButton(
                 child: new Text("취소"),
                 onPressed: () {
-                  Navigator.pop(context, InsertCatInfoController.to.sex);
+                  Navigator.pop(context, CatInfoUpdateController.to.sex);
                 },
               ),
             ],
           );
         },
       );
-      InsertCatInfoController.to.setSex(result);
+      CatInfoUpdateController.to.setSex(result);
     }
 
     // 주의사항 선택
@@ -166,7 +167,7 @@ class InsertCatInfoPate extends GetView<InsertInfoPageController> {
               new TextButton(
                 child: new Text("확인"),
                 onPressed: () {
-                  InsertCatInfoController.to.applyAlert();
+                  CatInfoUpdateController.to.applyAlert();
                   Navigator.pop(context);
                 },
               ),
@@ -181,8 +182,6 @@ class InsertCatInfoPate extends GetView<InsertInfoPageController> {
         },
       );
     }
-
-    TextEditingController inputController = TextEditingController();
 
     return Scaffold(
       body: Column(
@@ -215,8 +214,7 @@ class InsertCatInfoPate extends GetView<InsertInfoPageController> {
                             } else {
                               return ClipRRect(
                                   borderRadius: BorderRadius.circular(15),
-                                  child: Image.file(File(snapshot.data),
-                                      fit: BoxFit.cover));
+                                  child: Container(color: Colors.grey));
                             }
                           },
                         )),
@@ -246,7 +244,7 @@ class InsertCatInfoPate extends GetView<InsertInfoPageController> {
                   GestureDetector(
                     onTap: _showMarkerDialog,
                     child: Obx(() => Text(
-                          InsertCatInfoController.to.species,
+                          CatInfoUpdateController.to.species,
                           style: _selectTextStyle,
                         )),
                   )
@@ -265,7 +263,7 @@ class InsertCatInfoPate extends GetView<InsertInfoPageController> {
                       _showAgeDialog();
                     },
                     child: Obx(() => Text(
-                          InsertCatInfoController.to.age,
+                          CatInfoUpdateController.to.age,
                           style: _selectTextStyle,
                         )),
                   )
@@ -285,7 +283,7 @@ class InsertCatInfoPate extends GetView<InsertInfoPageController> {
                       },
                       child: Obx(
                         () => Text(
-                          InsertCatInfoController.to.sex,
+                          CatInfoUpdateController.to.sex,
                           style: _selectTextStyle,
                         ),
                       ))
@@ -300,16 +298,17 @@ class InsertCatInfoPate extends GetView<InsertInfoPageController> {
                 children: [
                   Text("주의사항", style: const TextStyle(fontSize: 16)),
                   GestureDetector(
-                    onTap: () {
-                      _showAlert();
-                    },
-                    child: Obx(() =>Text(
-                      InsertCatInfoController.to.alert.length == 0 ?
-                        "선택" :
-                        "${InsertCatInfoController.to.alert[0]} 등 ${InsertCatInfoController.to.alert.length} 개",
-                      style: _selectTextStyle,
-                    ),
-                  ))
+                      onTap: () {
+                        _showAlert();
+                      },
+                      child: Obx(
+                        () => Text(
+                          CatInfoUpdateController.to.alert.length == 0
+                              ? "선택"
+                              : "${CatInfoUpdateController.to.alert[0]} 등 ${CatInfoUpdateController.to.alert.length} 개",
+                          style: _selectTextStyle,
+                        ),
+                      ))
                 ]),
           ),
         ],

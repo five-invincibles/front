@@ -13,6 +13,7 @@ import 'package:front/Controller/main_page_controller.dart';
 import 'package:front/Controller/upload_picture_page_controller.dart';
 import 'package:front/Controller/user_page_controller.dart';
 import 'package:front/Controller/insert_info_page_controller.dart';
+import 'package:front/Controller/cat_info_update_page_controller.dart';
 import 'package:front/View/camera_page.dart';
 import 'package:front/View/cat_info_page.dart';
 import 'package:front/View/cat_map_page.dart';
@@ -26,6 +27,7 @@ import 'package:front/View/upload_picture_page.dart';
 import 'package:front/View/user_page.dart';
 import 'package:front/View/kakao_login.dart';
 import 'package:front/View/insert_cat_info_page.dart';
+import 'package:front/View/cat_info_update_page.dart';
 import 'package:get/get.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -96,6 +98,9 @@ class MyApp extends StatelessWidget {
         ]),
         GetPage(name: '/insertCat', page: () => InsertCatInfoPate(), bindings: [
           BindingsBuilder.put(() => InsertCatInfoController()),
+        ]),
+        GetPage(name: '/updateCat', page: () => CatInfoUpdatePage(), bindings: [
+          BindingsBuilder.put(() => CatInfoUpdateController()),
         ]),
       ],
     );

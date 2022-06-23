@@ -83,21 +83,26 @@ class PannelContent extends StatelessWidget {
                 Text("링웜, 비만"),
               ]),
               Divider(),
-              Container(
-                padding:
-                    EdgeInsets.only(left: 15, right: 17, bottom: 12, top: 6),
-                child: Row(
-                  children: [
-                    Icon(Icons.edit_outlined, color: Color(0xffFEBB6C)),
-                    Container(
-                        padding: EdgeInsets.only(left: 5),
-                        child: Text("최근 정보 업데이트 하기")),
-                    Expanded(child: Container()),
-                    Icon(
-                      Icons.arrow_forward_ios_outlined,
-                      color: Color(0xff667080),
-                    ),
-                  ],
+              GestureDetector(
+                onTap: () {
+                  Get.toNamed('/updateCat', arguments: {"image": ""});
+                },
+                child: Container(
+                  padding:
+                      EdgeInsets.only(left: 15, right: 17, bottom: 12, top: 6),
+                  child: Row(
+                    children: [
+                      Icon(Icons.edit_outlined, color: Color(0xffFEBB6C)),
+                      Container(
+                          padding: EdgeInsets.only(left: 5),
+                          child: Text("최근 정보 업데이트 하기")),
+                      Expanded(child: Container()),
+                      Icon(
+                        Icons.arrow_forward_ios_outlined,
+                        color: Color(0xff667080),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               Container(
