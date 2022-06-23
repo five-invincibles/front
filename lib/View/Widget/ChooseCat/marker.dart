@@ -3,11 +3,6 @@ import 'package:flutter/material.dart';
 import '../../../Model/Cat.dart';
 
 class Marker extends StatelessWidget {
-  TextStyle _nameTextStyle = const TextStyle(
-      fontSize: 14,
-    );
-
-
   Map<String, String> markerPath = {
     "샴": "Group18.png",
     "정장": "Group19.png",
@@ -24,15 +19,30 @@ class Marker extends StatelessWidget {
     "치즈": "Group21.png",
   };
 
-  late Cat cat;
-  Marker({Key? key, required this.cat}) : super(key: key);
+  final Cat cat;
+  final double? width;
+  final double? height;
+  final double? fontsize;
+  Marker({Key? key, required this.cat, this.width, this.height, this.fontsize})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    TextStyle _nameTextStyle = TextStyle(
+      fontSize: fontsize ?? 14,
+    );
     return Column(
       children: [
-        Image.asset("assets/marker/${markerPath[cat.species] ?? 'Group18.png'}"),
-        Text(cat.catName, style: _nameTextStyle,),
+        Image.asset(
+          "assets/marker/${markerPath[cat.species] ?? 'Group18.png'}",
+          width: width,
+          height: height,
+          fit: BoxFit.fill,
+        ),
+        Text(
+          cat.catName,
+          style: _nameTextStyle,
+        ),
       ],
     );
   }

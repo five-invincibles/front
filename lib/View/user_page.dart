@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:front/Controller/user_page_controller.dart';
+import 'package:front/View/Widget/ChooseCat/marker.dart';
 import 'package:get/get.dart';
 
 class UserPage extends GetView<UserPageController> {
@@ -27,12 +28,13 @@ class UserPage extends GetView<UserPageController> {
   Widget _buildBody() {
     return SafeArea(
       child: SingleChildScrollView(
-        child: Column(children: [_buildInfo()]),
+        child: Column(
+            children: [_buildInfo(), _buildFavorite(), _buildCommunity()]),
       ),
     );
   }
 
-  Container _buildInfo(
+  Widget _buildInfo(
       {String userName = '사용자 이름', String university = '한국 대학교'}) {
     return Container(
       height: 110,
@@ -98,6 +100,146 @@ class UserPage extends GetView<UserPageController> {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildFavorite() {
+    return Container(
+      width: Get.width,
+      decoration: BoxDecoration(
+          color: Color(0xFFFCFCFC),
+          border: Border.all(color: Color(0xFFF0F0F0))),
+      margin: const EdgeInsets.symmetric(vertical: 10),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Container(
+          margin: const EdgeInsets.only(top: 20, left: 20),
+          child: const Text(
+            '즐겨찾기 한 고양이 목록',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        Container(
+          margin: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+          child: Wrap(
+            crossAxisAlignment: WrapCrossAlignment.center,
+            runAlignment: WrapAlignment.center,
+            alignment: WrapAlignment.center,
+            spacing: 30,
+            runSpacing: 10,
+            children: controller.cats
+                .map((e) => Marker(
+                      cat: e,
+                      width: 60,
+                    ))
+                .toList(),
+          ),
+        ),
+        Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: () {},
+            child: Container(
+              height: 60,
+              child: Container(
+                margin: EdgeInsets.only(right: 30),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text('외 5마리 고양이 '),
+                    Text('더보기'),
+                    Icon(
+                      CupertinoIcons.chevron_forward,
+                      size: 20,
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+        )
+      ]),
+    );
+  }
+
+  Widget _buildCommunity() {
+    return Container(
+      width: Get.width,
+      decoration: BoxDecoration(
+          color: Color(0xFFFCFCFC),
+          border: Border.all(color: Color(0xFFF0F0F0))),
+      margin: const EdgeInsets.symmetric(vertical: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            margin: const EdgeInsets.only(top: 20, left: 20),
+            child: const Text(
+              '커뮤니티',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Material(
+            color: Colors.transparent,
+            shape: Border.symmetric(
+                vertical: BorderSide(color: Color(0xFFF0F0F0))),
+            child: InkWell(
+              onTap: () {},
+              child: Container(
+                height: 60,
+                child: Container(
+                  margin: EdgeInsets.only(right: 30),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text('좋아요 한 목록', style: TextStyle(fontSize: 16)),
+                      Icon(
+                        CupertinoIcons.chevron_forward,
+                        size: 20,
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Material(
+            color: Colors.transparent,
+            shape: Border.symmetric(
+                vertical: BorderSide(color: Color(0xFFF0F0F0))),
+            child: InkWell(
+              onTap: () {},
+              child: Container(
+                height: 60,
+                child: Container(
+                  margin: EdgeInsets.only(right: 30),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        '내가 쓴 게시물 보기',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      Icon(
+                        CupertinoIcons.chevron_forward,
+                        size: 20,
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
