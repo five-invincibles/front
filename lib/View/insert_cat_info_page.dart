@@ -6,6 +6,7 @@ import 'package:front/Controller/insert_info_page_controller.dart';
 import 'package:front/View/Widget/AddCat/header.dart';
 import 'package:front/Model/Cat.dart';
 import 'package:front/View/Widget/ChooseCat/marker.dart';
+import 'package:front/View/Widget/ChooseCat/chooseAlert.dart';
 import 'package:get/get.dart';
 
 class InsertCatInfoPate extends GetView<InsertInfoPageController> {
@@ -149,7 +150,28 @@ class InsertCatInfoPate extends GetView<InsertInfoPageController> {
       InsertCatInfoController.to.setSex(result);
     }
 
-    void _showAlertDialog() async {}
+    // 주의사항 선택
+    void _showAlert() async {
+      List<String> _list = InsertCatInfoController.to.alert;
+      String result = await showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(  
+            title: Text("주의사항 선택"),
+            content: ChooseAlert(),
+            actions: <Widget>[
+              new FlatButton(
+                child: new Text("취소"),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          );
+        },
+      );
+      InsertCatInfoController.to.setSex(result);
+    }
 
     TextEditingController inputController = TextEditingController();
 
@@ -270,10 +292,9 @@ class InsertCatInfoPate extends GetView<InsertInfoPageController> {
                   Text("주의사항", style: const TextStyle(fontSize: 16)),
                   GestureDetector(
                     onTap: () {
-                      _showAlertDialog();
+                      _showAlert();
                     },
-                    child: 
-                    Text(
+                    child: Text(
                       "선택",
                       style: _selectTextStyle,
                     ),

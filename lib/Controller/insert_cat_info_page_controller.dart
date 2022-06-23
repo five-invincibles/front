@@ -6,12 +6,13 @@ class InsertCatInfoController extends GetxController {
   RxString _specise = RxString("고등어");
   RxString _age = RxString("미상");
   RxString _sex = RxString("미상");
-  List<String> _alert = [];
+  RxList<String> _alert = RxList();
 
   RxString? get species => _specise;
   String? get name => _name;
   RxString? get age => _age;
   RxString? get sex => _sex;
+  List<String> get alert => _alert.value;
 
   void setSpecies(String specise) {
     _specise.value = specise;
