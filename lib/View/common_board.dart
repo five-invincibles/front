@@ -18,7 +18,7 @@ class CommonBoard extends GetView<CommonBoardController> {
         highlightElevation: 5,
         splashColor: Colors.white.withOpacity(0.1),
         hoverColor: Colors.white,
-        backgroundColor: const Color(0xFFFEBB6C),
+        backgroundColor: const Color(0xFFFF971E),
         child: const Icon(Icons.edit),
         onPressed: () => Get.toNamed('/commonBoardEdit'),
       ),
@@ -92,7 +92,7 @@ class CommonBoard extends GetView<CommonBoardController> {
                 ),
                 Text(
                   item.tileText,
-                  style: TextStyle(height: 2, fontSize: 14),
+                  style: TextStyle(height: 1.5, fontSize: 14),
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 10),

@@ -24,8 +24,8 @@ class CommonBoardEditPage extends GetView<CommonBoardEditPageController> {
               style: TextButton.styleFrom(
                 shape: const StadiumBorder(),
                 textStyle: TextStyle(color: Colors.white, fontSize: 13),
-                // foregroundColor: Colors.white,
-                backgroundColor: Color(0xFFFEBB6C),
+                foregroundColor: Colors.white,
+                backgroundColor: Color(0xFFFF971E),
               ),
               child: Text('업로드'),
               onPressed: () {},
