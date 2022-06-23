@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:exif/exif.dart';
-
-import 'choose_cat.dart';
+import 'package:front/View/choose_cat.dart';
 
 class UploadPicturePage extends GetView<UploadPicturePage> {
   late Map<String, dynamic> data;

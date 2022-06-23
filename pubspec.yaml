@@ -19,9 +19,11 @@ dependencies:
   image_picker: ^0.8.5+3
   exif: ^3.1.1
   flutter_dotenv: ^5.0.2
+
   searchfield: ^0.6.6
   camera_camera: ^2.0.2
   geolocator: ^8.2.1
+  location: ^4.4.0
 
 dev_dependencies:
   flutter_test:
