@@ -31,6 +31,8 @@ class InsertInfo extends GetView<InitPageController> {
     '연세대학교',
     '단국대학교',
     '우송대학교',
+    '야옹대학교',
+    '와플대학교',
   ];
 
   @override
@@ -38,7 +40,7 @@ class InsertInfo extends GetView<InitPageController> {
     double screenwidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      resizeToAvoidBottomInset: true,
+      resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
           Container(
@@ -58,7 +60,10 @@ class InsertInfo extends GetView<InitPageController> {
                         "대학교 명",
                         style: _textStyle,
                       ),
+                      SizedBox(height: 19),
                       Container(
+                        height: 54,
+                        padding: EdgeInsets.only(left: 15),
                         width: screenwidth * 0.9,
                         color: Color(0xffF0F0F0),
                         child: SearchField(
@@ -98,6 +103,12 @@ class InsertInfo extends GetView<InitPageController> {
                   decoration: BoxDecoration(
                     color: Color(0xffFEBB6C),
                     borderRadius: BorderRadius.circular(6),
+                    boxShadow: [BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: -5,
+                      blurRadius: 20,
+                      offset: Offset(0, 10)
+                    )]
                   ),
                   child: Text(
                     "접속하기",

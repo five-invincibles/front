@@ -31,38 +31,41 @@ class _ChooseAlertState extends State<ChooseAlert> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        shrinkWrap: true,
-        itemCount: _alert.length,
-        itemBuilder: (BuildContext context, int index) {
-          return Column(
-            children: [
-              GestureDetector(
-                onTap: () {
-                  if (_list.contains(_alert[index])) {
-                    setState(() {
-                      _list.remove(_alert[index]);
-                    });
-                    InsertCatInfoController.to.setTmpAlert(_list);
-                  } else {
-                    setState(() {
-                      _list.add(_alert[index]);
-                    });
-                    InsertCatInfoController.to.setTmpAlert(_list);
-                  }
-                },
-                child: Container(
-                  width: double.infinity,
-                  padding: EdgeInsets.only(top: 5, bottom: 5),
-                  color: _list.contains(_alert[index])
-                      ? Color(0xffF0F0F0)
-                      : Color(0xffFFFFFF),
-                  child: Text(_alert[index]),
+    return Container(
+      height: 400, width: 300,
+      child: ListView.builder(
+          shrinkWrap: true,
+          itemCount: _alert.length,
+          itemBuilder: (BuildContext context, int index) {
+            return Column(
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    if (_list.contains(_alert[index])) {
+                      setState(() {
+                        _list.remove(_alert[index]);
+                      });
+                      InsertCatInfoController.to.setTmpAlert(_list);
+                    } else {
+                      setState(() {
+                        _list.add(_alert[index]);
+                      });
+                      InsertCatInfoController.to.setTmpAlert(_list);
+                    }
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    padding: EdgeInsets.only(top: 5, bottom: 5),
+                    color: _list.contains(_alert[index])
+                        ? Color(0xffF0F0F0)
+                        : Color(0xffFFFFFF),
+                    child: Text(_alert[index]),
+                  ),
                 ),
-              ),
-              Divider(),
-            ],
-          );
-        });
+                Divider(),
+              ],
+            );
+          }),
+    );
   }
 }

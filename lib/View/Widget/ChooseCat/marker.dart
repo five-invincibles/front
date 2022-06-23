@@ -7,7 +7,6 @@ class Marker extends StatelessWidget {
       fontSize: 14,
     );
 
-
   Map<String, String> markerPath = {
     "샴": "sham.png",
     "정장": "suit.png",
@@ -30,6 +29,7 @@ class Marker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Image.asset("assets/marker/${markerPath[cat.species] ?? 'fish.png'}"),
         Text(cat.catName, style: _nameTextStyle,),

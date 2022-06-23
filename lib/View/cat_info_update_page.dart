@@ -47,21 +47,25 @@ class CatInfoUpdatePage extends GetView<CatInfoUpdateController> {
         builder: (BuildContext context) {
           return AlertDialog(
             title: new Text("종 선택"),
-            content: GridView.builder(
-                physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: _cats.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  mainAxisExtent: 90,
-                ),
-                itemBuilder: (BuildContext context, int index) {
-                  return GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context, _cats[index].species);
-                      },
-                      child: Marker(cat: _cats[index]));
-                }),
+            content: Container(
+              height: 450,
+              width: 300,
+              child: GridView.builder(
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: _cats.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    mainAxisExtent: 90,
+                  ),
+                  itemBuilder: (BuildContext context, int index) {
+                    return GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context, _cats[index].species);
+                        },
+                        child: Marker(cat: _cats[index]));
+                  }),
+            ),
             actions: <Widget>[
               new TextButton(
                 child: new Text("취소"),
@@ -84,23 +88,26 @@ class CatInfoUpdatePage extends GetView<CatInfoUpdateController> {
         builder: (BuildContext context) {
           return AlertDialog(
             title: Text("나이 선택"),
-            content: ListView.builder(
-                shrinkWrap: true,
-                itemCount: _ages.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Container(
-                      padding: EdgeInsets.only(top: 5, bottom: 5),
-                      child: Column(
-                        children: [
-                          GestureDetector(
-                              onTap: () {
-                                Navigator.pop(context, _ages[index]);
-                              },
-                              child: Text(_ages[index])),
-                          Divider(),
-                        ],
-                      ));
-                }),
+            content: Container(
+              height: 200, width: 200,
+              child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: _ages.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Container(
+                        padding: EdgeInsets.only(top: 5, bottom: 5),
+                        child: Column(
+                          children: [
+                            GestureDetector(
+                                onTap: () {
+                                  Navigator.pop(context, _ages[index]);
+                                },
+                                child: Text(_ages[index])),
+                            Divider(),
+                          ],
+                        ));
+                  }),
+            ),
             actions: <Widget>[
               new TextButton(
                 child: new Text("취소"),
@@ -123,23 +130,26 @@ class CatInfoUpdatePage extends GetView<CatInfoUpdateController> {
         builder: (BuildContext context) {
           return AlertDialog(
             title: Text("성별 선택"),
-            content: ListView.builder(
-                shrinkWrap: true,
-                itemCount: _sex.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Container(
-                      padding: EdgeInsets.only(top: 5, bottom: 5),
-                      child: Column(
-                        children: [
-                          GestureDetector(
-                              onTap: () {
-                                Navigator.pop(context, _sex[index]);
-                              },
-                              child: Text(_sex[index])),
-                          Divider(),
-                        ],
-                      ));
-                }),
+            content: Container(
+              height: 200, width: 200,
+              child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: _sex.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Container(
+                        padding: EdgeInsets.only(top: 5, bottom: 5),
+                        child: Column(
+                          children: [
+                            GestureDetector(
+                                onTap: () {
+                                  Navigator.pop(context, _sex[index]);
+                                },
+                                child: Text(_sex[index])),
+                            Divider(),
+                          ],
+                        ));
+                  }),
+            ),
             actions: <Widget>[
               new TextButton(
                 child: new Text("취소"),
