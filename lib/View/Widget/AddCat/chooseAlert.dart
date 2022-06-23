@@ -31,13 +31,13 @@ class _ChooseAlertState extends State<ChooseAlert> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        shrinkWrap: true,
-        itemCount: _alert.length,
-        itemBuilder: (BuildContext context, int index) {
-          return Container(
-            height: 400, width: 300,
-            child: Column(
+    return Container(
+      height: 400, width: 300,
+      child: ListView.builder(
+          shrinkWrap: true,
+          itemCount: _alert.length,
+          itemBuilder: (BuildContext context, int index) {
+            return Column(
               children: [
                 GestureDetector(
                   onTap: () {
@@ -64,8 +64,8 @@ class _ChooseAlertState extends State<ChooseAlert> {
                 ),
                 Divider(),
               ],
-            ),
-          );
-        });
+            );
+          }),
+    );
   }
 }
