@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:searchfield/searchfield.dart';
 import 'package:front/View/cat_map_page.dart';
 
-class InsertInfo extends GetView<InitPageController> {
+class InsertInfo extends GetView<InsertInfoPageController> {
   InsertInfo({Key? key}) : super(key: key);
 
   final TextStyle _logoTextStyle = const TextStyle(
@@ -25,9 +25,12 @@ class InsertInfo extends GetView<InitPageController> {
     color: Color(0xff667080),
   );
 
+<<<<<<< HEAD
   final _searchController = TextEditingController();
   
 
+=======
+>>>>>>> b8561ab97c001ebb8646ecda0559cf4efbb91d4a
   @override
   Widget build(BuildContext context) {
     InsertInfoPageController controller = Get.put(InsertInfoPageController());
@@ -61,15 +64,15 @@ class InsertInfo extends GetView<InitPageController> {
                         padding: EdgeInsets.only(left: 15),
                         width: screenwidth * 0.9,
                         color: Color(0xffF0F0F0),
-                        child: SearchField(
+                        child: Obx(() => SearchField(
                             searchStyle: _textFieldStyle,
                             suggestionState: Suggestion.expand,
                             suggestionAction: SuggestionAction.next,
-                            suggestions: _suggestions
+                            suggestions: controller.universities
                                 .map((e) => SearchFieldListItem(e))
                                 .toList(),
                             textInputAction: TextInputAction.next,
-                            controller: _searchController,
+                            controller: controller.searchController,
                             hint: '학교 선택',
                             maxSuggestionsInViewPort: 8,
                             itemHeight: 50,
@@ -78,16 +81,14 @@ class InsertInfo extends GetView<InitPageController> {
                               focusedBorder: InputBorder.none,
                               enabledBorder: InputBorder.none,
                               hintStyle: _textFieldStyle,
-                            )),
+                            ))),
                       ),
                     ],
                   ),
                 ),
               ),
               GestureDetector(
-                onTap: () {
-                  Get.toNamed('/catMap');
-                },
+                onTap: () => controller.signUp(),
                 child: Container(
                   alignment: Alignment.center,
                   width: 106,

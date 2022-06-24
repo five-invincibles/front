@@ -4,7 +4,8 @@ import 'package:get/get.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class KakaoLoginButton extends StatelessWidget {
-  KakaoLoginButton({Key? key}) : super(key: key) {
+  final VoidCallback onTap;
+  KakaoLoginButton({Key? key, required this.onTap}) : super(key: key) {
     // 카카오 로그인 되어있으면 바로 페이지 이동
     _loginCheck();
   }
@@ -12,66 +13,13 @@ class KakaoLoginButton extends StatelessWidget {
   void _loginCheck() async {
     if (await AuthApi.instance.hasToken()) {
       await UserApi.instance.logout(); // 들어오자마자 자동 로그아웃 임시로 넣음
-      // AccessTokenInfo user = await UserApi.instance.accessTokenInfo();
-      // print('사용자 정보 요청 성공'
-      //     '\n회원번호: ${user.id}');
-      // Get.toNamed('/insertInfo');
-    }
-  }
-
-  // 사용자 정보 처리 (DB 전송 등)
-  void _get_user_info() async {
-    try {
-      User user = await UserApi.instance.me();
-      EasyLoading.dismiss();
-      print('사용자 정보 요청 성공'
-          '\n회원번호: ${user.id}'
-          '\n닉네임: ${user.kakaoAccount?.profile?.nickname}');
-      Get.toNamed('/insertInfo');
-    } catch (error) {
-      print('사용자 정보 요청 실패 $error');
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () async {
-        if (await isKakaoTalkInstalled()) {
-          try {
-            // 카카오 로그인 성공
-            await UserApi.instance.loginWithKakaoTalk();
-            EasyLoading.show(status: '로그인중...');
-            print('카카오톡으로 로그인 성공');
-            _get_user_info();
-          } catch (error) {
-            // 카카오 웹으로 로그인
-            EasyLoading.dismiss();
-            print('카카오톡으로 로그인 실패 $error');
-            // 카카오톡에 연결된 카카오계정이 없는 경우, 카카오계정으로 로그인
-            try {
-              await UserApi.instance.loginWithKakaoAccount();
-              EasyLoading.show(status: '로그인중...');
-              print('카카오계정으로 로그인 성공');
-              _get_user_info();
-            } catch (error) {
-              EasyLoading.dismiss();
-              print('카카오계정으로 로그인 실패 $error');
-            }
-          }
-        } else {
-          // 카카오 웹으로 로그인
-          try {
-            await UserApi.instance.loginWithKakaoAccount();
-            EasyLoading.show(status: '로그인중...');
-            print('카카오계정으로 로그인 성공');
-            _get_user_info();
-          } catch (error) {
-            EasyLoading.dismiss();
-            print('카카오계정으로 로그인 실패 $error');
-          }
-        }
-      },
+      onTap: onTap,
       child: Container(
           child: Image.asset('assets/image/kakao_login_medium_narrow.png')),
     );
