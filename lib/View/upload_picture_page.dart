@@ -25,23 +25,33 @@ class UploadPicturePage extends GetView<UploadPicturePage> {
       print(e);
     }
 
+    double convertToDegree(String str) {
+      String data = str.substring(1, str.length - 1);
+      List<String> tmp = data.split(",");
+      List<String> last = tmp[2].split('/');
+      int degree = int.parse(tmp[0]);
+      int minute = int.parse(tmp[1]);
+      double second = int.parse(last[0]) / int.parse(last[1]);
+      return degree + minute / 60 + second / 3600;
+    }
+
     if (data.containsKey("GPS GPSLatitude") &&
         data.containsKey("GPS GPSLongitude")) {
       String dateData = data["Image DateTime"].toString();
       String latitude = data["GPS GPSLatitude"].toString();
       String longitude = data["GPS GPSLongitude"].toString();
-
       Get.off(ChooseCat(), arguments: {
         "date": dateData,
-        "latitude": latitude,
-        "longitude": longitude,
-        "image": image!.path,
+        "latitude": convertToDegree(latitude),
+        "longitude": convertToDegree(longitude),
+        "image": image.path,
       });
     } else {
       if (data != {}) {
-        showToast("위치데이터가 없는 파일입니다", 
-        position: ToastPosition.bottom,
-        backgroundColor: Colors.grey.withOpacity(0.8),
+        showToast(
+          "위치데이터가 없는 파일입니다",
+          position: ToastPosition.bottom,
+          backgroundColor: Colors.grey.withOpacity(0.8),
         );
       }
       Get.back();

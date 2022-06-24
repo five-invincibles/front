@@ -88,7 +88,8 @@ class InsertCatInfoPate extends GetView<InsertInfoPageController> {
           return AlertDialog(
             title: Text("나이 선택"),
             content: Container(
-              height: 200, width: 200,
+              height: 200,
+              width: 200,
               child: ListView.builder(
                   shrinkWrap: true,
                   itemCount: _ages.length,
@@ -130,7 +131,8 @@ class InsertCatInfoPate extends GetView<InsertInfoPageController> {
           return AlertDialog(
             title: Text("성별 선택"),
             content: Container(
-              height: 200, width: 200,
+              height: 200,
+              width: 200,
               child: ListView.builder(
                   shrinkWrap: true,
                   itemCount: _sex.length,
@@ -242,6 +244,9 @@ class InsertCatInfoPate extends GetView<InsertInfoPageController> {
                 ),
                 SizedBox(height: 21),
                 TextField(
+                  onChanged: (text) {
+                    InsertCatInfoController.to.setName(text);
+                  },
                   controller: inputController,
                   style: _nameTextStyle,
                   decoration: InputDecoration(
@@ -315,16 +320,17 @@ class InsertCatInfoPate extends GetView<InsertInfoPageController> {
                 children: [
                   Text("주의사항", style: const TextStyle(fontSize: 16)),
                   GestureDetector(
-                    onTap: () {
-                      _showAlert();
-                    },
-                    child: Obx(() =>Text(
-                      InsertCatInfoController.to.alert.length == 0 ?
-                        "선택" :
-                        "${InsertCatInfoController.to.alert[0]} 등 ${InsertCatInfoController.to.alert.length} 개",
-                      style: _selectTextStyle,
-                    ),
-                  ))
+                      onTap: () {
+                        _showAlert();
+                      },
+                      child: Obx(
+                        () => Text(
+                          InsertCatInfoController.to.alert.length == 0
+                              ? "선택"
+                              : "${InsertCatInfoController.to.alert[0]} 등 ${InsertCatInfoController.to.alert.length} 개",
+                          style: _selectTextStyle,
+                        ),
+                      ))
                 ]),
           ),
         ],
@@ -334,6 +340,7 @@ class InsertCatInfoPate extends GetView<InsertInfoPageController> {
 
   Future<String> _fetchImage() async {
     final data = await Get.arguments;
+    InsertCatInfoController.to.setData(data['image'], data['latitude'], data['longitude'], data['date']);
     return data['image'];
   }
 }

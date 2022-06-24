@@ -8,6 +8,5 @@ class UserProvider extends GetConnect {
     httpClient.defaultContentType = 'application/json';
   }
 
-  Future<Response> getUniversities() =>
-    get('getUniversities');
+  Future<Response> getUniversities() => get('getUniversities');
 }

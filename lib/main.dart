@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:front/Controller/camera_page_controller.dart';
 import 'package:front/Controller/cat_info_page_controller.dart';
 import 'package:front/Controller/cat_map_page_controller.dart';
@@ -14,7 +15,6 @@ import 'package:front/Controller/main_page_controller.dart';
 import 'package:front/Controller/upload_picture_page_controller.dart';
 import 'package:front/Controller/user_page_controller.dart';
 import 'package:front/Controller/insert_info_page_controller.dart';
-import 'package:front/Controller/cat_info_update_page_controller.dart';
 import 'package:front/View/camera_page.dart';
 import 'package:front/View/cat_info_page.dart';
 import 'package:front/View/cat_map_page.dart';
@@ -29,11 +29,9 @@ import 'package:front/View/upload_picture_page.dart';
 import 'package:front/View/user_page.dart';
 import 'package:front/View/kakao_login.dart';
 import 'package:front/View/insert_cat_info_page.dart';
-import 'package:front/View/cat_info_update_page.dart';
 import 'package:get/get.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:oktoast/oktoast.dart';
 
 Future main() async {
@@ -49,6 +47,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return OKToast(
       child: GetMaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Cature',
         theme: ThemeData(
           primarySwatch: Colors.blue,
@@ -89,33 +88,28 @@ class MyApp extends StatelessWidget {
             bindings: [
               BindingsBuilder.put(() => CommonBoardDetailPageController()),
             ]),
-          GetPage(name: '/insertInfo', page: () => InsertInfo(), bindings: [
-    
-            BindingsBuilder.put(() => InsertInfoPageController()),
-          ]),
-          GetPage(name: '/login', page: () => const KakaoLogin(), bindings: [
-            BindingsBuilder.put(() => KakaoLoginController()),
-          ]),
-          GetPage(name: '/main', page: () => const Main(), bindings: [
-            BindingsBuilder.put(() => MainPageController()),
-          ]),
-          GetPage(
-              name: '/uploadPicture',
-              page: () => UploadPicturePage(),
-              bindings: [
-                BindingsBuilder.put(() => UploadPicturePageController()),
-              ]),
-          GetPage(name: '/user', page: () => const UserPage(), bindings: [
-            BindingsBuilder.put(() => UserPageController()),
-          ]),
-          GetPage(name: '/insertCat', page: () => InsertCatInfoPate(), bindings: [
-            BindingsBuilder.put(() => InsertCatInfoController()),
-          ]),
-          GetPage(name: '/updateCat', page: () => CatInfoUpdatePage(), bindings: [
-            BindingsBuilder.put(() => CatInfoUpdateController()),
-          ]),
-        ],
-      ),
+        GetPage(name: '/insertInfo', page: () => InsertInfo(), bindings: [
+          BindingsBuilder.put(() => InsertInfoPageController()),
+        ]),
+        GetPage(name: '/login', page: () => const KakaoLogin(), bindings: [
+          BindingsBuilder.put(() => KakaoLoginController()),
+        ]),
+        GetPage(name: '/main', page: () => const Main(), bindings: [
+          BindingsBuilder.put(() => MainPageController()),
+        ]),
+        GetPage(
+            name: '/uploadPicture',
+            page: () => UploadPicturePage(),
+            bindings: [
+              BindingsBuilder.put(() => UploadPicturePageController()),
+            ]),
+        GetPage(name: '/user', page: () => const UserPage(), bindings: [
+          BindingsBuilder.put(() => UserPageController()),
+        ]),
+        GetPage(name: '/insertCat', page: () => InsertCatInfoPate(), bindings: [
+          BindingsBuilder.put(() => InsertCatInfoController()),
+        ]),
+      ],
     );
   }
 }

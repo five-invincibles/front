@@ -6,6 +6,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:front/View/Widget/Map/pannel.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:front/View/cat_map_page.dart';
 
 class CatMapPage extends GetView<CatMapPageController> {
   CatMapPage({super.key});
@@ -47,7 +48,7 @@ class CatMapPage extends GetView<CatMapPageController> {
     showLoading();
     return Obx(() => controller.isLoading.value
         ? Center(
-            child: Text(''),
+            child: Text('Loading'),
           )
         : Stack(
             children: [
@@ -59,17 +60,21 @@ class CatMapPage extends GetView<CatMapPageController> {
 
   Widget _buildMap() {
     EasyLoading.dismiss();
-    print("latitude ${controller.currentLocation!.value.latitude!}");
-    print("longitude ${controller.currentLocation!.value.longitude!}");
+    // print("latitude ${controller.currentLocation!.value.latitude!}");
+    // print("longitude ${controller.currentLocation!.value.longitude!}");
     return Obx(() => GoogleMap(
           onTap: (LatLng position) {
             controller.hidePanel();
           },
+          onCameraMove: (object) => {
+            controller.setCats(object.target.longitude, object.target.latitude)
+          },
           zoomControlsEnabled: false,
           mapType: MapType.terrain,
           initialCameraPosition: CameraPosition(
-              target: LatLng(controller.currentLocation!.value.latitude!,
-                  controller.currentLocation!.value.longitude!),
+              // target: LatLng(controller.currentLocation!.value.latitude!,
+              //     controller.currentLocation!.value.longitude!),
+              target: LatLng(36.628583, 127.457583),
               zoom: 17),
           onMapCreated: (GoogleMapController controller) {
             this.controller.mapController.complete(controller);

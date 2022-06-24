@@ -26,17 +26,19 @@ class KakaoLogin extends GetView<KakaoLoginController> {
               Container(
                   padding: EdgeInsets.only(bottom: 171),
                   child: Container(
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.7),
-                          spreadRadius: 0,
-                          blurRadius: 5.0,
-                          offset: Offset(0, 10), // changes position of shadow
-                        ),
-                      ],
-                    ),
-                    child: KakaoLoginButton())),
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.7),
+                            spreadRadius: 0,
+                            blurRadius: 5.0,
+                            offset: Offset(0, 10), // changes position of shadow
+                          ),
+                        ],
+                      ),
+                      child: KakaoLoginButton(
+                        onTap: () => controller.login(),
+                      ))),
             ],
           ),
         ],

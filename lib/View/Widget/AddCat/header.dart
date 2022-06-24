@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:front/Controller/insert_cat_info_page_controller.dart';
+import 'package:front/View/cat_map_page.dart';
 
 class Header extends StatelessWidget {
   Header({Key? key}) : super(key: key);
@@ -27,11 +29,21 @@ class Header extends StatelessWidget {
                 onTap: () {
                   Get.back();
                 },
-                child: Icon(Icons.arrow_back, color: Color(0xff667080),)),
+                child: Icon(
+                  Icons.arrow_back,
+                  color: Color(0xff667080),
+                )),
             Text("새로운 고양이 추가하기", style: _textStyle),
-            GestureDetector(onTap: () {
-              // Todo 확인 버튼
-            }, child: Icon(Icons.check, color: Color(0xff667080),)),
+            GestureDetector(
+                onTap: () {                
+                  InsertCatInfoController.to.registerCat();
+                  Get.back();
+                  Get.back();
+                },
+                child: Icon(
+                  Icons.check,
+                  color: Color(0xff667080),
+                )),
           ],
         )
       ]),

@@ -225,7 +225,7 @@ class CatInfoUpdatePage extends GetView<CatInfoUpdateController> {
                             } else {
                               return ClipRRect(
                                   borderRadius: BorderRadius.circular(15),
-                                  child: Container(color: Colors.grey));
+                                  child: Image.asset("assets/image/cat1.jpg", fit: BoxFit.cover,));
                             }
                           },
                         )),
