@@ -71,9 +71,6 @@ class CatMapPageController extends GetxController {
   Future _getCurrentLocation() async {
     var location = Location();
     currentLocation = (await Location().getLocation()).obs;
-    location.onLocationChanged.listen((loc) {
-      currentLocation!(loc);
-    });
   }
 
   void initialPanel() {

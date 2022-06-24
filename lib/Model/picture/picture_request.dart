@@ -18,14 +18,14 @@ class PictureRequest {
       required this.latitude,
       required this.longitude});
 
-  String get toJson {
-    return jsonEncode({
+  Map<String, dynamic> get toJson {
+    return {
       'catId': catID,
       'description': description,
       'kakaoID': kakaoID,
       'title': title,
       'latitude': latitude.toJson,
       'longitude': longitude.toJson,
-    });
+    };
   }
 }

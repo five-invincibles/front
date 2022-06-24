@@ -70,4 +70,10 @@ class KakaoLoginController extends GetxController {
       print('카카오계정으로 로그인 실패 $error');
     }
   }
+
+  @override
+  void onInit() {
+    super.onInit();
+    EasyLoading.init();
+  }
 }

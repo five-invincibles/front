@@ -28,7 +28,6 @@ class InsertInfo extends GetView<InsertInfoPageController> {
   @override
   Widget build(BuildContext context) {
     double screenwidth = MediaQuery.of(context).size.width;
-
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Stack(

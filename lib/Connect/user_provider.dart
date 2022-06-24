@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:front/Model/user/signup_request.dart';
 import 'package:front/Model/user/token_request.dart';
 import 'package:front/Model/user/user_update_request.dart';
@@ -12,8 +14,11 @@ class UserProvider extends GetConnect {
   }
 
   Future<Response> getUniversities() => get('getUniversities');
-  Future<Response> login(TokenRequest req) => post('login', req.toJson);
-  Future<Response> me(TokenRequest req) => post('me', req.toJson);
-  Future<Response> signUp(signUpRequest req) => post('signup', req.toJson);
-  Future<Response> update(UserUpdateRequest req) => post('signup', req.toJson);
+  Future<Response> login(TokenRequest req) =>
+      post('login', jsonEncode(req.toJson));
+  Future<Response> me(TokenRequest req) => post('me', jsonEncode(req.toJson));
+  Future<Response> signUp(signUpRequest req) =>
+      post('signup', jsonEncode(req.toJson));
+  Future<Response> update(UserUpdateRequest req) =>
+      post('signup', jsonEncode(req.toJson));
 }

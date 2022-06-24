@@ -6,10 +6,10 @@ class signUpRequest {
 
   signUpRequest({required this.accessToken, required this.university});
 
-  String get toJson {
-    return jsonEncode({
+  Map<String, dynamic> get toJson {
+    return {
       'accessToken': accessToken,
       'university': university,
-    });
+    };
   }
 }

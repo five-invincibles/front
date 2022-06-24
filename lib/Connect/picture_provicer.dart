@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:path/path.dart';
@@ -12,9 +13,10 @@ class PictureProvider extends GetConnect {
   }
 
   Future<Response> save(File file, PictureRequest req) => post(
-      'save',
-      FormData({
-        'file': MultipartFile(file, filename: basename(file.path)),
-        'pictureRequest': req.toJson
-      }));
+        'save',
+        FormData({
+          'file': MultipartFile(file, filename: basename(file.path)),
+          'pictureRequest': jsonEncode(req.toJson),
+        }),
+      );
 }

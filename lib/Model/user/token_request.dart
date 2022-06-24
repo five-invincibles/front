@@ -5,7 +5,7 @@ class TokenRequest {
 
   TokenRequest({required this.kakaoToken});
 
-  String get toJson {
-    return jsonEncode({"kakaoToken": kakaoToken});
+  Map<String, dynamic> get toJson {
+    return {"kakaoToken": kakaoToken};
   }
 }

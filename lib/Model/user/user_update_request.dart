@@ -12,12 +12,12 @@ class UserUpdateRequest {
       required this.name,
       required this.university});
 
-  String get toJson {
-    return jsonEncode({
+  Map<String, dynamic> get toJson {
+    return {
       'email': email,
       'kakaoID': kakaoID,
       'name': name,
       'university': university,
-    });
+    };
   }
 }
