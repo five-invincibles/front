@@ -1,7 +1,9 @@
+import 'dart:io';
 import 'package:get/get.dart';
 import 'package:front/Connect/CatProvider.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:front/Model/lat_long.dart';
+import 'package:front/Connect/hope.dart';
 
 class InsertCatInfoController extends GetxController {
   static InsertCatInfoController get to => Get.find();
@@ -84,20 +86,21 @@ class InsertCatInfoController extends GetxController {
 
   void registerCat() async {
     AccessTokenInfo tokenInfo = await UserApi.instance.accessTokenInfo();
-    final data = await catProvider.postRegister({"catRequest": {
-      "catName": _name,
-      "specise": _specise.value,
-      "age": convertAge[_age.value],
-      "sex": _sex.value,
-      "datails": alert,
-      "pictureRequest": {
-        "latitude": toDMS(_latitude!),
-        "longitude": toDMS(_longitude!),
-        "catId": 0,
-        "kakaoId": tokenInfo.id,
-        "date": convertDate(_date!),
-      }
-    }}, _imagePath!);
-    print(data.body);
+    hope().upload(File(_imagePath!));
+    // final data = await catProvider.postRegister({
+    //   "catName": _name,
+    //   "species": _specise.value,
+    //   "age": convertAge[_age.value],
+    //   "sex": _sex.value,
+    //   "datails": alert,
+    //   "pictureRequest": {
+    //     "latitude": toDMS(_latitude!),
+    //     "longitude": toDMS(_longitude!),
+    //     "catID": 0,
+    //     "kakaoID": tokenInfo.id,
+    //     "date": convertDate(_date!),
+    //   }
+    // }, _imagePath!);
+    // print(data.body);
   }
 }

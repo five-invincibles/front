@@ -31,9 +31,8 @@ class InsertInfo extends GetView<InitPageController> {
   @override
   Widget build(BuildContext context) {
     InsertInfoPageController controller = Get.put(InsertInfoPageController());
-    final List<String> _suggestions = controller.university.value;
+    final List<String> _suggestions = ["충북대학교", "한림대학교", "연세대학교", "단국대학교", "우송대학교"];
     double screenwidth = MediaQuery.of(context).size.width;
-    controller.getUniversity();
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Stack(
@@ -44,7 +43,7 @@ class InsertInfo extends GetView<InitPageController> {
             child: Image.asset("assets/image/insert_info_screen.png",
                 fit: BoxFit.cover),
           ),
-          Obx(() => Column(
+          Column(
             children: [
               SizedBox(height: 193),
               Expanded(
@@ -66,7 +65,7 @@ class InsertInfo extends GetView<InitPageController> {
                             searchStyle: _textFieldStyle,
                             suggestionState: Suggestion.expand,
                             suggestionAction: SuggestionAction.next,
-                            suggestions: controller.university.value
+                            suggestions: _suggestions
                                 .map((e) => SearchFieldListItem(e))
                                 .toList(),
                             textInputAction: TextInputAction.next,
@@ -114,7 +113,7 @@ class InsertInfo extends GetView<InitPageController> {
               )
             ],
           ),
-      )],
+      ],
       ),
     );
   }

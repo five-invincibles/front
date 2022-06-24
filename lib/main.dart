@@ -49,6 +49,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return OKToast(
       child: GetMaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Cature',
         theme: ThemeData(
           primarySwatch: Colors.blue,

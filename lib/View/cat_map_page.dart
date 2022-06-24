@@ -60,8 +60,8 @@ class CatMapPage extends GetView<CatMapPageController> {
 
   Widget _buildMap() {
     EasyLoading.dismiss();
-    print("latitude ${controller.currentLocation!.value.latitude!}");
-    print("longitude ${controller.currentLocation!.value.longitude!}");
+    // print("latitude ${controller.currentLocation!.value.latitude!}");
+    // print("longitude ${controller.currentLocation!.value.longitude!}");
     return Obx(() => GoogleMap(
           onTap: (LatLng position) {
             controller.hidePanel();
@@ -72,8 +72,9 @@ class CatMapPage extends GetView<CatMapPageController> {
           zoomControlsEnabled: false,
           mapType: MapType.terrain,
           initialCameraPosition: CameraPosition(
-              target: LatLng(controller.currentLocation!.value.latitude!,
-                  controller.currentLocation!.value.longitude!),
+              // target: LatLng(controller.currentLocation!.value.latitude!,
+              //     controller.currentLocation!.value.longitude!),
+              target: LatLng(36.628583, 127.457583),
               zoom: 17),
           onMapCreated: (GoogleMapController controller) {
             this.controller.mapController.complete(controller);

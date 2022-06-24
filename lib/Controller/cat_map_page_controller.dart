@@ -28,47 +28,95 @@ class CatMapPageController extends GetxController {
     Cat(
         catId: 0,
         catName: "냥진이",
-        species: "얼룩",
+        species: "정장",
         age: "10살 이상",
         sex: "암컷(중성화)",
-        latitude: "36.625",
-        longitude: "127.448"),
+        latitude: "36.628583",
+        longitude: "127.456283"),
     Cat(
         catId: 1,
         catName: "고양이1",
         species: "깻잎",
         age: "10살 이상",
         sex: "암컷(중성화)",
-        latitude: "36.620",
-        longitude: "127.443"),
+        latitude: "36.628484",
+        longitude: "127.457183"),
     Cat(
         catId: 2,
         catName: "고양이2",
         species: "고등어",
         age: "10살 이상",
         sex: "암컷(중성화)",
-        latitude: "36.615",
-        longitude: "127.453"),
+        latitude: "36.628583",
+        longitude: "127.457383"),
     Cat(
         catId: 3,
         catName: "고양이3",
         species: "삼색태비",
         age: "10살 이상",
         sex: "암컷(중성화)",
-        latitude: "36.633",
-        longitude: "127.447"),
+        latitude: "36.628583",
+        longitude: "127.453283"),
     Cat(
         catId: 4,
         catName: "고양이4",
         species: "치즈",
         age: "10살 이상",
         sex: "암컷(중성화)",
-        latitude: "36.610",
-        longitude: "127.448"),
+        latitude: "36.628453",
+        longitude: "127.457293"),
+    Cat(
+        catId: 5,
+        catName: "고양이5",
+        species: "샴",
+        age: "10살 이상",
+        sex: "암컷(중성화)",
+        latitude: "36.627453",
+        longitude: "127.457293"),
+    Cat(
+        catId: 6,
+        catName: "고양이5",
+        species: "카오스",
+        age: "10살 이상",
+        sex: "암컷(중성화)",
+        latitude: "36.627553",
+        longitude: "127.456293"),
+    Cat(
+        catId: 7,
+        catName: "고양이5",
+        species: "고등어태비",
+        age: "10살 이상",
+        sex: "암컷(중성화)",
+        latitude: "36.627451",
+        longitude: "127.457253"),
+    Cat(
+        catId: 7,
+        catName: "고양이5",
+        species: "까망",
+        age: "10살 이상",
+        sex: "암컷(중성화)",
+        latitude: "36.626451",
+        longitude: "127.457353"),
+    Cat(
+        catId: 7,
+        catName: "고양이5",
+        species: "고등어태비",
+        age: "10살 이상",
+        sex: "암컷(중성화)",
+        latitude: "36.627351",
+        longitude: "127.457153"),
+    Cat(
+        catId: 7,
+        catName: "고양이5",
+        species: "치즈태비",
+        age: "10살 이상",
+        sex: "암컷(중성화)",
+        latitude: "36.627351",
+        longitude: "127.457153"),
   ]);
 
   Rx<Cat>? catPannelInfo = Rx<Cat>(
-      Cat(catId: -1, catName: "이름", species: "고등어", age: "미상", sex: "미상"));
+      Cat(catId: -1, catName: "나비", species: "치즈", age: "1살 이하", sex: "수컷(중성화)"));
   RxMap<String, BitmapDescriptor?> markerIcon = RxMap();
 
   Future _getCurrentLocation() async {
@@ -87,7 +135,7 @@ class CatMapPageController extends GetxController {
 
   void initialPanel() {
     catPannelInfo!.value =
-        Cat(catId: -1, catName: "이름", species: "고등어", age: "미상", sex: "미상");
+        Cat(catId: -1, catName: "나비", species: "치즈", age: "1살 이하", sex: "수컷(중성화)");
   }
 
   void setPanel(Cat cat) async {
@@ -96,7 +144,6 @@ class CatMapPageController extends GetxController {
   }
 
   void showPanel() async {
-    initialPanel();
     isShowPannel.value = true;
   }
 

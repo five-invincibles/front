@@ -5,9 +5,6 @@ import 'package:get/get.dart';
 import 'package:front/Model/lat_long.dart';
 
 class CatProvider extends GetConnect {
-  
-
-
   @override
   void onInit() {
     super.onInit();
@@ -17,11 +14,13 @@ class CatProvider extends GetConnect {
 
   Future<Response> getNearBy(LatLong req) => post('nearBy', req.toJson());
 
+  Future<Response> getCatId(int id) => get('', query: {"cat_id": id});
+
   Future<Response> postRegister(Map<String, dynamic> data, String path) async {
+    final tmp = jsonEncode(data);
     MultipartFile f = MultipartFile(await File(path).readAsBytes(),
-        filename: "${data['name']}.png");
-    data['file'] = f;
-    print(data);
-    return post('register', data, contentType: "multipart/form-data");
+        filename: "a.png");
+    final request = {"catRequest": data, "file": f};
+    return post('register', FormData(request));
   }
 }
